@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from fifa.apps.clubs.models import Club
 from fifa.apps.leagues.models import League
 from fifa.apps.nations.models import Nation
+from fifa.apps.players.models import Player, PLAYER_POSITION_LINES
 
 
 class Downloader(object):
@@ -331,8 +332,6 @@ class ClubDownloader(Downloader):
         if failed_urls:
             self.build_club_data(failed=failed_urls, data=clubs)
 
-        return clubs
-
     def build_clubs(self, *args, **kwargs):
         data = self.build_club_data()
         created_clubs = []
@@ -346,5 +345,174 @@ class ClubDownloader(Downloader):
                 print('Created Club: {}'.format(club))
 
         print(len(created_clubs))
+
+        return
+
+
+class PlayerDownloader(Downloader):
+    def __init__(self):
+        super(PlayerDownloader, self).__init__()
+
+        self.players_json = 'https://fifa15.content.easports.com/fifa/fltOnlineAssets/8D941B48-51BB-4B87-960A-06A61A62EBC0/2015/fut/items/web/players.json'
+
+    def build_player_data(self, *args, **kwargs):
+        urls = kwargs.get('failed', self.get_crawlable_urls())
+        players = kwargs.get('data', [])
+        failed_urls = []
+
+        player_page = requests.get(self.players_json)
+
+        if player_page.status_code == requests.codes.ok:
+            players_json = player_page.json()
+            players_data_normal = players_json['Players']
+            players_data_legends = players_json['LegendsPlayers']
+        else:
+            raise Exception("Can't get players JSON")
+
+        for i, url in enumerate(urls):
+            page = requests.get(url)
+
+            if page.status_code == requests.codes.ok:
+                try:
+                    print('Got page {}'.format(i))
+
+                    page_json = page.json()
+                    items = page_json['items']
+
+                    for item in items:
+                        player = item
+
+                        print(player['firstName'])
+
+                        if player['commonName']:
+                            common_name = player['commonName']
+                        elif player['name']:
+                            common_name = player['name']
+                        else:
+                            common_name = '{} {}'.format(
+                                player['firstName'],
+                                player['lastName']
+                            )
+
+                        for k, v in PLAYER_POSITION_LINES.items():
+                            if player['position'] in PLAYER_POSITION_LINES[k]:
+                                position_line = k
+
+                        player_data = {
+                            'first_name': player['firstName'],
+                            'last_name': player['lastName'],
+                            'common_name': common_name,
+                            'club': Club.objects.get(ea_id=player['club']['id']),
+                            'league': League.objects.get(ea_id=player['league']['id']),
+                            'nation': Nation.objects.get(ea_id=player['nation']['id']),
+                            'image': player['headshotImgUrl'],
+                            'image_sm': player['headshot']['smallImgUrl'],
+                            'image_md': player['headshot']['medImgUrl'],
+                            'image_lg': player['headshot']['largeImgUrl'],
+                            'image_special_totw_md': player['specialImages']['medTOTWImgUrl'],
+                            'image_special_totw_lg': player['specialImages']['largeTOTWImgUrl'],
+                            'position': player['position'],
+                            'position_full': player['positionFull'],
+                            'position_line': position_line,
+                            'playstyle': player['playStyle'],
+                            'playstyle_id': player['playStyleId'],
+                            'height': player['height'],
+                            'weight': player['weight'],
+                            'date_of_birth': player['birthdate'],
+                            'acceleration': player['acceleration'],
+                            'aggression': player['aggression'],
+                            'agility': player['agility'],
+                            'balance': player['balance'],
+                            'ballcontrol': player['ballcontrol'],
+                            'crossing': player['crossing'],
+                            'curve': player['curve'],
+                            'dribbling': player['dribbling'],
+                            'finishing': player['finishing'],
+                            'freekickaccuracy': player['freekickaccuracy'],
+                            'gkdiving': player['gkdiving'],
+                            'gkhandling': player['gkhandling'],
+                            'gkkicking': player['gkkicking'],
+                            'gkpositioning': player['gkpositioning'],
+                            'gkreflexes': player['gkreflexes'],
+                            'headingaccuracy': player['headingaccuracy'],
+                            'interceptions': player['interceptions'],
+                            'jumping': player['jumping'],
+                            'longpassing': player['longpassing'],
+                            'longshots': player['longshots'],
+                            'marking': player['marking'],
+                            'penalties': player['penalties'],
+                            'positioning': player['positioning'],
+                            'potential': player['potential'],
+                            'reactions': player['reactions'],
+                            'shortpassing': player['shortpassing'],
+                            'shotpower': player['shotpower'],
+                            'slidingtackle': player['slidingtackle'],
+                            'sprintspeed': player['sprintspeed'],
+                            'standingtackle': player['standingtackle'],
+                            'stamina': player['stamina'],
+                            'strength': player['strength'],
+                            'vision': player['vision'],
+                            'volleys': player['volleys'],
+                            'foot': player['foot'],
+                            'skill_moves': player['skillMoves'],
+                            'weak_foot': player['weakFoot'],
+                            'traits': player['traits'],
+                            'specialities': player['specialities'],
+                            'workrate_att': player['atkWorkRate'],
+                            'workrate_def': player['defWorkRate'],
+                            'player_type': player['playerType'],
+                            'item_type': player['itemType'],
+                            'overall_rating': player['rating'],
+                            'card_att_1': player['attributes'][0]['value'],
+                            'card_att_2': player['attributes'][1]['value'],
+                            'card_att_3': player['attributes'][2]['value'],
+                            'card_att_4': player['attributes'][3]['value'],
+                            'card_att_5': player['attributes'][4]['value'],
+                            'card_att_6': player['attributes'][5]['value'],
+                            'quality': player['quality'],
+                            'color': player['color'],
+                            'is_gk': player['isGK'],
+                            'is_special_type': player['isSpecialType'],
+                            'is_loan': player['isLoan'],
+                            'model_name': player['modelName'],
+                            'base_id': player['baseId'],
+                            'ea_id': player['baseId']
+                        }
+
+                        if player_data not in players:
+                            players.append(player_data)
+
+                except ValueError:
+                    failed_urls.append(url)
+
+                    print("Can't convert page to JSON")
+            else:
+                failed_urls.append(url)
+
+                print('Url failed: {}'.format(url))
+
+            print([(n['common_name']) for n in players],
+                  'Page {}'.format(i))
+
+        if failed_urls:
+            self.build_player_data(failed=failed_urls, data=players)
+
+        return players
+
+    def build_players(self, *args, **kwargs):
+        data = self.build_player_data()
+        created_players = []
+
+        for obj in data:
+            player, created = Player.objects.get_or_create(**obj)
+
+            if created:
+                player.slug = slugify(
+                    '{}-{}'.format(player.id, player.common_name))
+                created_players.append(created)
+
+                print('Created Player: {}'.format(player))
+
+        print(len(created_players))
 
         return

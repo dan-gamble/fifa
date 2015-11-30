@@ -118,6 +118,7 @@ INSTALLED_APPS = (
     'fifa.apps.clubs',
     'fifa.apps.leagues',
     'fifa.apps.nations',
+    'fifa.apps.players',
     'fifa.apps.users',
 )
 
