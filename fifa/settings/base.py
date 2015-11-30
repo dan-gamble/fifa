@@ -115,6 +115,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.admin',
 
+    'fifa.apps.nations',
     'fifa.apps.users',
 )
 

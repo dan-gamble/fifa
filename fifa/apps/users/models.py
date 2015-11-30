@@ -1,8 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-from django.utils import timezone
 
-from ...models import TimeStampedModel
+from fifa.apps.models import TimeStampedModel
 
 
 class UserManager(BaseUserManager):
