@@ -1,6 +1,7 @@
 import requests
 from django.utils.text import slugify
 
+from fifa.apps.leagues.models import League
 from fifa.apps.nations.models import Nation
 
 
@@ -136,5 +137,105 @@ class NationDownloader(Downloader):
                 print('Created Nation: {}'.format(nation))
 
         print(len(created_nations))
+
+        return
+
+
+class LeagueDownloader(Downloader):
+    def __init__(self):
+        super(LeagueDownloader, self).__init__()
+
+        self.leagues_json = 'https://fifa15.content.easports.com/fifa/' \
+                            'fltOnlineAssets/' \
+                            'B488919F-23B5-497F-9FC0-CACFB38863D0/2016/fut/' \
+                            'config/web/teamconfig.json'
+
+    def build_league_data(self, *args, **kwargs):
+        urls = kwargs.get('failed', self.get_crawlable_urls())
+        leagues = kwargs.get('data', [])
+        failed_urls = []
+        leagues_data = {}
+
+        league_page = requests.get(self.leagues_json)
+
+        if league_page.status_code == requests.codes.ok:
+            leagues_json = league_page.json()
+
+            for league in leagues_json['Years']:
+                if league['Year'] == '2016':
+                    leagues_data = league['Leagues']
+
+        for i, url in enumerate(urls):
+            page = requests.get(url)
+
+            if page.status_code == requests.codes.ok:
+                try:
+                    print('Got page {}'.format(i))
+
+                    page_json = page.json()
+                    items = page_json['items']
+
+                    for item in items:
+                        league = item['league']
+
+                        league_data = {
+                            'name': league['name'],
+                            'name_abbr': league['abbrName'],
+                            'ea_id': league['id'],
+                            'slug': slugify(league['name'])
+                        }
+
+                        for data in leagues_data:
+                            league_id = int(data['LeagueId'])
+                            scraped_id = int(league_data['ea_id'])
+                            nation_id = int(data['NationId'])
+
+                            if league_id == scraped_id:
+                                league_data['nation'] = Nation.objects.get(
+                                    ea_id=nation_id
+                                )
+
+                                print(
+                                    'Paired League & Nation: {} - {}'.format(
+                                        league_data['name'],
+                                        league_data['nation']
+                                    ))
+
+                                if league_data not in leagues:
+                                    leagues.append(league_data)
+                            else:
+                                print("Can't find Nation for {}".format(
+                                    league_data['name']
+                                ))
+
+                except ValueError:
+                    failed_urls.append(url)
+
+                    print("Can't convert page to JSON")
+            else:
+                failed_urls.append(url)
+
+                print('Url failed: {}'.format(url))
+
+            print([n['name'] for n in leagues], 'Page {}'.format(i))
+
+        if failed_urls:
+            self.build_league_data(failed=failed_urls, data=leagues)
+
+        return leagues
+
+    def build_leagues(self, *args, **kwargs):
+        data = self.build_league_data()
+        created_leagues = []
+
+        for obj in data:
+            league, created = League.objects.get_or_create(**obj)
+
+            if created:
+                created_leagues.append(created)
+
+                print('Created Nation: {}'.format(league))
+
+        print(len(created_leagues))
 
         return
