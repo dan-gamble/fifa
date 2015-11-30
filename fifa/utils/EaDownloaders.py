@@ -1,6 +1,7 @@
 import requests
 from django.utils.text import slugify
 
+from fifa.apps.clubs.models import Club
 from fifa.apps.leagues.models import League
 from fifa.apps.nations.models import Nation
 
@@ -237,5 +238,113 @@ class LeagueDownloader(Downloader):
                 print('Created Nation: {}'.format(league))
 
         print(len(created_leagues))
+
+        return
+
+
+class ClubDownloader(Downloader):
+    def __init__(self):
+        super(ClubDownloader, self).__init__()
+
+        self.clubs_json = 'https://fifa15.content.easports.com/fifa/' \
+                            'fltOnlineAssets/' \
+                            'B488919F-23B5-497F-9FC0-CACFB38863D0/2016/fut/' \
+                            'config/web/teamconfig.json'
+
+    def build_club_data(self, *args, **kwargs):
+        urls = kwargs.get('failed', self.get_crawlable_urls())
+        clubs = kwargs.get('data', [])
+        failed_urls = []
+        clubs_data = {}
+
+        club_page = requests.get(self.clubs_json)
+
+        if club_page.status_code == requests.codes.ok:
+            clubs_json = club_page.json()
+
+            for club in clubs_json['Years']:
+                if club['Year'] == '2016':
+                    clubs_data = club['Teams']
+
+        for i, url in enumerate(urls):
+            page = requests.get(url)
+
+            if page.status_code == requests.codes.ok:
+                try:
+                    print('Got page {}'.format(i))
+
+                    page_json = page.json()
+                    items = page_json['items']
+
+                    for item in items:
+                        club = item['club']
+
+                        club_data = {
+                            'name': club['name'],
+                            'name_abbr': club['abbrName'],
+                            'ea_id': club['id'],
+                            'image_dark_sm': club['imageUrls']['dark']['small'],
+                            'image_dark_md': club['imageUrls']['dark']['medium'],
+                            'image_dark_lg': club['imageUrls']['dark']['large'],
+                            'image_normal_sm': club['imageUrls']['normal']['small'],
+                            'image_normal_md': club['imageUrls']['normal']['medium'],
+                            'image_normal_lg': club['imageUrls']['normal']['large'],
+                            'slug': slugify(club['name'])
+                        }
+
+                        for data in clubs_data:
+                            club_id = int(data['TeamId'])
+                            scraped_id = int(club_data['ea_id'])
+                            league_id = int(data['LeagueId'])
+
+                            if club_id == scraped_id:
+                                club_data['league'] = League.objects.get(
+                                    ea_id=league_id
+                                )
+
+                                print(
+                                    'Paired Club & League: {} - {}'.format(
+                                        club_data['name'],
+                                        club_data['league']
+                                    ))
+
+                                if club_data not in clubs:
+                                    clubs.append(club_data)
+
+                                break
+                            else:
+                                print("Can't find League for {}".format(
+                                    club_data['name']
+                                ))
+
+                except ValueError:
+                    failed_urls.append(url)
+
+                    print("Can't convert page to JSON")
+            else:
+                failed_urls.append(url)
+
+                print('Url failed: {}'.format(url))
+
+            print([n['name'] for n in clubs], 'Page {}'.format(i))
+
+        if failed_urls:
+            self.build_club_data(failed=failed_urls, data=clubs)
+
+        return clubs
+
+    def build_clubs(self, *args, **kwargs):
+        data = self.build_club_data()
+        created_clubs = []
+
+        for obj in data:
+            club, created = Club.objects.get_or_create(**obj)
+
+            if created:
+                created_clubs.append(created)
+
+                print('Created Club: {}'.format(club))
+
+        print(len(created_clubs))
 
         return
