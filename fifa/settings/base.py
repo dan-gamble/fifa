@@ -115,6 +115,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.admin',
 
+    'rest_framework',
     'webpack_loader',
 
     'fifa.apps.clubs',
@@ -152,9 +153,15 @@ LOGGING = {
 
 WSGI_APPLICATION = 'fifa.wsgi.application'
 
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 15
+}
+
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/',
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
 }
+
+FIXTURE_DIRS = os.path.join(BASE_DIR, 'fifa', 'fixtures')

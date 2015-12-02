@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h1>{{ header }}</h1>
+    <header>
+      {{ header }}
+    </header>
 
     <p>
-      <a v-link="{ path: '/foo' }">Go to Foo</a>
+      <a v-link="{ name: 'nations:nations' }">Nations</a>
       <a v-link="{ path: '/bar' }">Go to Bar</a>
     </p>
 
@@ -22,6 +24,10 @@
         header: 'Header',
         footer: 'Footer'
       }
+    },
+
+    components: {
+      // 'scf-header': Header
     }
   }
 </script>
