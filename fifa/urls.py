@@ -12,7 +12,8 @@ urlpatterns = [
         name='homepage'
     ),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^nations/', include('fifa.apps.nations.urls', namespace='nations')),
+    url('^.*$', TemplateView.as_view(template_name='base.html'))
+    # url(r'^nations/', include('fifa.apps.nations.urls', namespace='nations')),
 ]
 
 if settings.DEBUG:

@@ -3,7 +3,6 @@
 import os
 from sys import path
 
-
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 SITE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SITE_NAME = os.path.basename(BASE_DIR)
@@ -11,7 +10,6 @@ SITE_NAME = os.path.basename(BASE_DIR)
 # Add our project to our pythonpath, this way we don't need to type our project
 # name in our dotted import paths:
 path.append(SITE_ROOT)
-
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -56,7 +54,10 @@ TEMPLATES = [
         ],
         'APP_DIRS': True,
         'OPTIONS': {
-            'environment': 'fifa.jinja2.environment'
+            'environment': 'fifa.jinja2.environment',
+            'extensions': [
+                'webpack_loader.contrib.jinja2ext.WebpackExtension'
+            ]
         }
     },
     {
@@ -104,7 +105,6 @@ PASSWORD_HASHERS = (
 
 ROOT_URLCONF = 'fifa.urls'
 
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -114,6 +114,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.admin',
+
+    'webpack_loader',
 
     'fifa.apps.clubs',
     'fifa.apps.leagues',
@@ -149,3 +151,10 @@ LOGGING = {
 }
 
 WSGI_APPLICATION = 'fifa.wsgi.application'
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
+}
