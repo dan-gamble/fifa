@@ -1,54 +1,45 @@
-<template>
-  <div>
-    <ul>
-      <item v-for="(k, v) in nations" :item="v"></item>
-    </ul>
+<style scoped>
+  .counter {
+    height: 200px;
+    margin: 0 auto;
+    max-width: 200px;
 
-    <div class="pagination">
-      <button @click="getNextNations()" v-show="nextPage">Next</button>
-      <button @click="getPrevNations()" v-show="prevPage">Prev</button>
-    </div>
+    line-height: 200px;
+    text-align: center;
+
+    border-radius: 4px;
+    box-shadow: 0 0 10px #e2e2e2;
+    cursor: pointer;
+
+    transition: transform .3s, box-shadow .3s;
+  }
+  .counter:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<template>
+  <div class="counter" @click="handleClick">
+    {{ count }}
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import Item from './NationsItem.vue'
-
   export default {
     data () {
       return {
-        prevPage: '',
-        nextPage: '',
-        nations: []
+        count: this.$revue.getState().counter
       }
     },
 
-    components: {
-      Item
-    },
-
     ready () {
-      this.$http.get('/api/nations/', function (data, status, request) {
-        this.nextPage = data.next
-        this.prevPage = data.previous
-        this.nations = data.results
-      })
+      this.$subscribe('counter as count')
     },
 
     methods: {
-      getNextNations () {
-        this.$http.get(this.nextPage, function (data, status, request) {
-          this.nextPage = data.next
-          this.prevPage = data.previous
-          this.nations = data.results
-        })
-      },
-      getPrevNations () {
-        this.$http.get(this.prevPage, function (data, status, request) {
-          this.nextPage = data.next
-          this.prevPage = data.prev
-          this.nations = data.results
-        })
+      handleClick () {
+        this.$revue.dispatch({type: 'INCREMENT'})
       }
     }
   }

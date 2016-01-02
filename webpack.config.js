@@ -52,5 +52,11 @@ module.exports = {
   resolve: {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.js']
+  },
+
+  vue: {
+    autoprefixer: {
+      browsers: ['last 2 versions']
+    }
   }
 }
