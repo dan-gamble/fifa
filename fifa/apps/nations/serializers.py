@@ -5,5 +5,7 @@ from .models import Nation
 class NationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Nation
-        fields = ('name', 'name_abbr', 'slug', 'image', 'image_sm', 'image_md',
-                  'image_lg')
+        exclude = ('created', 'modified')
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }

@@ -21,4 +21,4 @@ class Command(BaseCommand):
             }
         }
 
-        print downloader.build_nations(nation_mapping)
+        print(downloader.build_nations(nation_mapping))

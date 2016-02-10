@@ -332,6 +332,8 @@ class ClubDownloader(Downloader):
         if failed_urls:
             self.build_club_data(failed=failed_urls, data=clubs)
 
+        return clubs
+
     def build_clubs(self, *args, **kwargs):
         data = self.build_club_data()
         created_clubs = []

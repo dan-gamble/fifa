@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 from fifa.apps.models import EaAsset, TimeStampedModel
 
@@ -20,3 +21,9 @@ class Nation(EaAsset, TimeStampedModel, models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.slug = slugify(self.name)
+
+        super(Nation, self).save()

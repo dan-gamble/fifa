@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'rest_framework',
+    'django_filters',
     'webpack_loader',
 
     'fifa.apps.clubs',
@@ -154,7 +155,8 @@ LOGGING = {
 WSGI_APPLICATION = 'fifa.wsgi.application'
 
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 15
+    'PAGE_SIZE': 15,
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }
 
 WEBPACK_LOADER = {
@@ -164,4 +166,4 @@ WEBPACK_LOADER = {
     }
 }
 
-FIXTURE_DIRS = os.path.join(BASE_DIR, 'fifa', 'fixtures')
+# FIXTURE_DIRS = os.path.join(BASE_DIR, 'fifa', 'fixtures')
