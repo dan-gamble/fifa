@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 
-import Test from './Test.vue'
+import Builder from './Builder.vue'
 
 Vue.use(VueResource)
 
 new Vue({
-  el: '#player',
+  el: '#builder',
   components: {
-    Test
+    Builder
   }
 })

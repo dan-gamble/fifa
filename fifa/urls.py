@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 
+from fifa.apps.builder.views import SquadViewSet
 from fifa.apps.nations.views import NationViewSet
 from fifa.apps.leagues.views import LeagueViewSet
 from fifa.apps.clubs.views import ClubViewSet
@@ -13,6 +14,7 @@ from fifa.apps.players.views import PlayerViewSet
 admin.autodiscover()
 
 router = DefaultRouter()
+router.register(r'squads', SquadViewSet)
 router.register(r'nations', NationViewSet)
 router.register(r'leagues', LeagueViewSet)
 router.register(r'clubs', ClubViewSet)
@@ -22,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^builder/', include('fifa.apps.builder.urls', namespace='builder')),
     url(r'^nations/', include('fifa.apps.nations.urls', namespace='nations')),
     url(r'^players/', include('fifa.apps.players.urls', namespace='players'))
 ]

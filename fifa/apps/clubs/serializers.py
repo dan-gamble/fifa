@@ -4,7 +4,7 @@ from fifa.apps.leagues.serializers import LeagueSerializer
 from .models import Club
 
 
-class ClubSerializer(serializers.HyperlinkedModelSerializer):
+class ClubSerializer(serializers.ModelSerializer):
     league = LeagueSerializer()
 
     class Meta:

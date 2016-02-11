@@ -4,7 +4,7 @@ from fifa.apps.nations.serializers import NationSerializer
 from .models import League
 
 
-class LeagueSerializer(serializers.HyperlinkedModelSerializer):
+class LeagueSerializer(serializers.ModelSerializer):
     nation = NationSerializer()
 
     class Meta:

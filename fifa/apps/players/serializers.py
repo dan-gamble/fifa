@@ -6,7 +6,7 @@ from fifa.apps.nations.serializers import NationSerializer
 from .models import Player
 
 
-class PlayerSerializer(serializers.HyperlinkedModelSerializer):
+class PlayerSerializer(serializers.ModelSerializer):
     club = ClubSerializer()
     league = LeagueSerializer()
     nation = NationSerializer()

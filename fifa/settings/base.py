@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'django_filters',
     'webpack_loader',
 
+    'fifa.apps.builder',
     'fifa.apps.clubs',
     'fifa.apps.leagues',
     'fifa.apps.nations',
