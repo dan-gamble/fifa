@@ -1,12 +1,14 @@
 <template>
-  <div class="player" @click="findPlayer()">
-    Player
+  <div class="player" @click="toggleModal()">
+    <span v-if="player.common_name">{{ player.common_name }}</span>
 
-    <input type="text" v-model="term" v-show="show" debounce="200">
+    <div class="search" v-show="show">
+      <input type="text" v-model="term" debounce="200" @click.stop>
 
-    <span v-if="!items.length">No results!</span>
-    <div class="item" v-for="(k, v) in items">
-      {{ v.first_name }} {{ v.last_name }} - {{ v.common_name }}
+      <span v-if="!items.length">No results!</span>
+      <div class="item" v-for="(k, v) in items" @click.stop="setPlayer(v)">
+        {{ v.first_name }} {{ v.last_name }} - {{ v.common_name }}
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +23,8 @@
         show: false
       }
     },
+
+    props: ['index', 'player'],
 
     watch: {
       'term' (newVal, oldVal) {
@@ -38,8 +42,14 @@
     },
 
     methods: {
-      findPlayer () {
-        this.show = true
+      setPlayer(player) {
+        this.$parent.$set(`team.player${this.index}`, player)
+        this.show = false
+      },
+
+      toggleModal() {
+        this.show = !this.show
+        this.items = []
       }
     }
   }

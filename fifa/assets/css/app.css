@@ -1,0 +1,32 @@
+.players {
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  display: flex;
+}
+
+.player {
+  align-items: center;
+  justify-content: center;
+
+  display: flex;
+  width: 200px;
+  height: 200px;
+
+  background-color: #ececec;
+}
+
+.search {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+
+  background-color: rgba(#000, 0.7);
+}
+
+.item {
+  background-color: #fff;
+}

@@ -7,9 +7,10 @@
     <meta name="description" content="{% block meta_description %}{% endblock meta_description %}">
     <meta name="robots" content="{% block meta_robots %}{% endblock meta_robots %}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    {{ render_bundle('main', 'css') }}
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-GHW2S7IZAQe8+YkyL99LyDj1zdWXSPOG+JZafCtKiSc= sha512-vxM32w6T7zJ83xOQ6FT4CEFnlasqmkcB0+ojgbI0N6ZtSxYvHmT7sX2icN07TqEqr5wdKwoLkmB8sAsGAjCJHg==" crossorigin="anonymous">
+    <link href="{{ static('build/css/app.css') }}" rel="stylesheet">
+    {{ render_bundle('app', 'css') }}
     <title>{% block title %}{% endblock title %}</title>
 
     {% block extra_styles %}{% endblock %}
@@ -23,7 +24,8 @@
       <div id="app"></div>
     {% endblock primary_content %}
     {% block end_js %}
-      {{ render_bundle('main', 'js') }}
+      {{ render_bundle('shared', 'js') }}
+      {{ render_bundle('app', 'js') }}
     {% endblock %}
   </body>
 </html>
