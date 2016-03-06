@@ -1,0 +1,89 @@
+/*
+|--------------------------------------------------------------------------
+| Action with chevron
+|--------------------------------------------------------------------------
+|
+*/
+@mixin ActionWithChevron() {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+  text-transform: uppercase;
+
+  color: $Color_Anchor;
+
+  transition: all 0.18s;
+
+  &::after {
+    content: '';
+
+    display: inline-block;
+    width: 7px;
+    height: 10px;
+    margin-left: 5px;
+
+    background-image: inline('chevron-blue.svg');
+    background-size: @width @height;
+
+    transition: all 0.18s;
+  }
+
+  &:hover {
+    color: $Color_Brand-navy;
+
+    &::after {
+      background-image: inline('chevron-navy.svg');
+    }
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Background spread
+|--------------------------------------------------------------------------
+| Mainly used when you're having to have an image cover a section or div
+|
+*/
+@mixin Background_Spread() {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*
+|--------------------------------------------------------------------------
+| At least
+|--------------------------------------------------------------------------
+| If there are at least 'x' children
+|
+*/
+/* stylelint-disable */
+@mixin AtLeast($Count: 0) {
+  &:first-child:nth-last-child($Count),
+  &:first-child:nth-last-child($Count) ~ & {
+    @content;
+  }
+}
+/* stylelint-enable */
+
+/*
+|--------------------------------------------------------------------------
+| Exactly
+|--------------------------------------------------------------------------
+| If there are exactly 'x' children
+|
+*/
+/* stylelint-disable */
+@mixin Exactly($Count: 0) {
+  &:nth-last-child($Count):first-child,
+  &:nth-last-child($Count):first-child ~ & {
+    @content;
+  }
+}
+/* stylelint-enable */

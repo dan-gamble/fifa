@@ -1,0 +1,40 @@
+/*
+|--------------------------------------------------------------------------
+| Buttons
+|--------------------------------------------------------------------------
+|
+*/
+
+/*
+|--------------------------------------------------------------------------
+| Button
+|--------------------------------------------------------------------------
+| Main button mixin that lays out the base for a button, nothing besides
+| structure should be implied in here.
+|
+| The background-color & color only exist here so we can do transition, if we
+| have no value for them then the transition is instant instead of what is
+| declared
+|
+*/
+@mixin Button() {
+  display: inline-block;
+  padding: 7px 20px;
+
+  line-height: 26px;
+
+  background-color: transparent;
+  border-radius: 3px;
+  color: #fff;
+
+  transition: background-color 0.18s, color 0.18s;
+
+  @media (--md) {
+    line-height: 26px;
+  }
+
+  &:hover {
+    background-color: transparent;
+    color: #fff;
+  }
+}

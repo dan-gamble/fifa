@@ -20,7 +20,6 @@ var cleanTask = function (cb) {
   files.push('!' + path.join(config.root.src, '/**/*'))
 
   del(files).then(function (paths) {
-    // console.log(paths)
     cb()
   })
 }

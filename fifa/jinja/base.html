@@ -19,10 +19,38 @@
     <link rel="shortcut icon" href="{{ static('img/favicon.ico') }}" />
   </head>
 
-  <body class="{% block body_class %}{% endblock body_class %}">
-    {% block primary_content %}
-      <div id="app"></div>
-    {% endblock primary_content %}
+  <body class="{% block body_class %}{% endblock %}">
+{#    {% include 'base/_browser-update.html' %}#}
+{#    {% include 'base/_analytics.html' %}#}
+
+    {% block site %}
+      <div class="lyt-Site">
+{#        {% include 'base/_header.html' %}#}
+
+        <div class="lyt-Content_Outer">
+          {% block content_above %}{% endblock %}
+
+          {% block content_outer %}
+            <div class="lyt-Content {% block content_class %}{% endblock %}">
+              {% block content %}
+                <main class="lyt-Main {% block main_class %}{% endblock %}">
+                  {% block main %}{% endblock %}
+                </main>
+
+                <aside class="lyt-Aside">
+                  {% block aside %}{% endblock %}
+                </aside>
+              {% endblock %}
+            </div>
+          {% endblock %}
+
+          {% block content_below %}{% endblock %}
+
+{#          {% include 'footer/_footer.html' %}#}
+        </div>
+      </div>
+    {% endblock %}
+
     {% block end_js %}
       {{ render_bundle('shared', 'js') }}
       {{ render_bundle('app', 'js') }}

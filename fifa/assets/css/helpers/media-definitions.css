@@ -1,0 +1,30 @@
+/*
+|--------------------------------------------------------------------------
+| Media query definitions
+|--------------------------------------------------------------------------
+| The definitions used for all of our responsive changes. By default it will
+| take the breakpoint supplied and apply the changes to that breakpoint and all
+| the sizes above it.
+|
+| If you require styles to be applied to just a certain breakpoint you can use
+| '{$size}-viewport' which will apply styles to just that size and not to sizes
+| above it.
+|
+| Do not under ANY circumstances add a set of arguments that only apply a
+| max-width so it applies to the size set and all sizes below. This is very
+| bad practice.
+|
+*/
+@custom-media --sm (width > 480px);
+@custom-media --md (width > 768px);
+@custom-media --lg (width > 1024px);
+@custom-media --xlg (width > 1440px);
+@custom-media --xxlg (width > 1920px);
+
+/* Target just a specific viewport */
+@custom-media --xs-viewport (width <= 480px);
+@custom-media --sm-viewport (width > 480px) and (width <= 768px);
+@custom-media --md-viewport (width > 768px) and (width <= 1024px);
+@custom-media --lg-viewport (width > 1024px) and (width <= 1440px);
+@custom-media --xlg-viewport (width > 1440px) and (width <= 1920px);
+@custom-media --xxlg-viewport (width > 1920px);
