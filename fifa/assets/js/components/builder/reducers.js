@@ -21,58 +21,102 @@ const defaultState = {
   pc: 0,
 
   players: {
+    0: {
+      chemistry: {
+        links: 0,
+        position: 0,
+        boost: 0
+      },
+      player: {},
+      position: ''
+    },
     1: {
-      chemistry: '',
+      chemistry: {
+        links: 0,
+        position: 0,
+        boost: 0
+      },
       player: {},
       position: ''
     },
     2: {
-      chemistry: '',
+      chemistry: {
+        links: 0,
+        position: 0,
+        boost: 0
+      },
       player: {},
       position: ''
     },
     3: {
-      chemistry: '',
+      chemistry: {
+        links: 0,
+        position: 0,
+        boost: 0
+      },
       player: {},
       position: ''
     },
     4: {
-      chemistry: '',
+      chemistry: {
+        links: 0,
+        position: 0,
+        boost: 0
+      },
       player: {},
       position: ''
     },
     5: {
-      chemistry: '',
+      chemistry: {
+        links: 0,
+        position: 0,
+        boost: 0
+      },
       player: {},
       position: ''
     },
     6: {
-      chemistry: '',
+      chemistry: {
+        links: 0,
+        position: 0,
+        boost: 0
+      },
       player: {},
       position: ''
     },
     7: {
-      chemistry: '',
+      chemistry: {
+        links: 0,
+        position: 0,
+        boost: 0
+      },
       player: {},
       position: ''
     },
     8: {
-      chemistry: '',
+      chemistry: {
+        links: 0,
+        position: 0,
+        boost: 0
+      },
       player: {},
       position: ''
     },
     9: {
-      chemistry: '',
+      chemistry: {
+        links: 0,
+        position: 0,
+        boost: 0
+      },
       player: {},
       position: ''
     },
     10: {
-      chemistry: '',
-      player: {},
-      position: ''
-    },
-    11: {
-      chemistry: '',
+      chemistry: {
+        links: 0,
+        position: 0,
+        boost: 0
+      },
       player: {},
       position: ''
     }
@@ -81,10 +125,32 @@ const defaultState = {
 
 export default function builder (state = defaultState, action) {
   switch (action.type) {
+    case 'UPDATE_PLAYER_PLAYER':
+      const index = action.index
+      const arr = Object.values(state.players)
+
+      const newArr = [
+        ...arr.slice(0, index),
+        Object.assign({}, arr[index], {
+          player: action.player
+        }),
+        ...arr.slice(index + 1)
+      ]
+
+      const obj = {}
+      for (let i = 0; i < newArr.length; i++) {
+        obj[i] = newArr[i]
+      }
+
+      return Object.assign({}, state, {
+        players: obj
+      })
+
     case 'UPDATE_POSITIONS':
       const positions = positionMap[action.formation]
 
       return Object.assign({}, state, updatePositions(state, positions))
+
     default:
       return state
   }
@@ -93,6 +159,10 @@ export default function builder (state = defaultState, action) {
 function updatePositions (state, positions) {
   return {
     players: {
+      0: {
+        ...state.players[0],
+        position: positions[0]
+      },
       1: {
         ...state.players[1],
         position: positions[1]
@@ -132,10 +202,6 @@ function updatePositions (state, positions) {
       10: {
         ...state.players[10],
         position: positions[10]
-      },
-      11: {
-        ...state.players[11],
-        position: positions[11]
       }
     }
   }
