@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux'
 
-// import mobileNav from './components/mobile-nav/reducers'
+import builder from './components/builder/reducers'
 
 export default combineReducers({
-  
+  builder
 })
