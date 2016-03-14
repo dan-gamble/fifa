@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import Revue from 'revue'
-import {createStore} from 'redux'
-import reducers from './reducers'
+import Vuex from 'vuex'
 
-const reduxStore = createStore(reducers)
+import modules from './components/modules'
 
-const store = new Revue(Vue, reduxStore)
+Vue.use(Vuex)
 
-export default store
+export default new Vuex.Store({
+  modules
+})

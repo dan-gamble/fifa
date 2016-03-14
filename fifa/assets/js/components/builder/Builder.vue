@@ -1,7 +1,7 @@
 <template>
   <div>
     <input type="text" v-model="builder.name">
-    <select v-model="builder.selectedFormation">
+    <select @input="updateSelectedFormation">
       <option v-for="(k, v) in formations | orderBy true"
               value="{{ v }}"
               :selected="builder.selectedFormation === v">{{ k }}</option>
@@ -13,22 +13,22 @@
 
 <script type="text/ecmascript-6">
   import Player from './Player.vue'
-
-  import store from 'store'
+  import * as actions from './actions'
 
   export default {
+    vuex: {
+      actions,
+      getters: {
+        builder: (state) => state.builder
+      }
+    },
+
     components: {
       Player
     },
 
     ready () {
-      store.dispatch({ type: 'UPDATE_POSITIONS', formation: this.builder.selectedFormation })
-    },
-
-    data () {
-      return {
-        builder: this.$select('builder')
-      }
+      this.updatePlayerPositions({ formation: this.builder.selectedFormation })
     },
 
     props: {
@@ -41,13 +41,13 @@
 
     watch: {
       'builder.selectedFormation' (val) {
-        store.dispatch({type: 'UPDATE_POSITIONS', formation: val})
+        this.updatePlayerPositions({ formation: val })
       }
     },
 
     methods: {
-      test () {
-        store.dispatch({type: 'TEST'})
+      test (e) {
+        console.log(e)
       }
     }
   }
