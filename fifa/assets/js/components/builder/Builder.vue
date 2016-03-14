@@ -43,12 +43,6 @@
       'builder.selectedFormation' (val) {
         this.updatePlayerPositions({ formation: val })
       }
-    },
-
-    methods: {
-      test (e) {
-        console.log(e)
-      }
     }
   }
 </script>

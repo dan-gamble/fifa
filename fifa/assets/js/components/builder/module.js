@@ -1,4 +1,5 @@
-import positionMap from './positionMap'
+import positionChem from './utils/positionChem'
+import positionMap from './utils/positionMap'
 
 const state = {
   // Squad
@@ -134,6 +135,16 @@ const mutations = {
 
   'UPDATE_SELECTED_FORMATION' (state, val) {
     state.selectedFormation = val
+  },
+
+  'UPDATE_PLAYER' (state, data) {
+    state.players[data.index].player = data.player
+  },
+
+  'UPDATE_PLAYER_CHEMISTRY' (state, data) {
+    const positionChemMap = `${state.players[data.index].position}:${data.player.position}`
+
+    state.players[data.index].chemistry[data.type] = positionChem[positionChemMap]
   }
 }
 

@@ -11,7 +11,7 @@
     <span>Chem: {{ overallChemistry }}</span>
     <div>
       <div v-for="result in results">
-        <div @click="updatePlayer(result, index)">
+        <div @click="processUpdatePlayer(result, index)">
           {{ result.first_name }} {{ result.last_name }} - {{ result.common_name }}
         </div>
       </div>
@@ -20,17 +20,18 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import positionChem from './positionChem'
-  import store from 'store'
+  import {updatePlayer, updatePlayerChemistry} from './actions'
 
   export default {
+    vuex: {
+      actions: {
+        updatePlayer,
+        updatePlayerChemistry
+      }
+    },
+
     data () {
       return {
-        chemistry: {
-          links: 0,
-          position: 0,
-          boost: 0
-        },
         results: [],
         query: '',
         showInput: false
@@ -41,17 +42,16 @@
 
     computed: {
       overallChemistry () {
-        return Object.values(this.chemistry).reduce((prev, next) => {
-          return prev + next
-        }) || 0
+        return Object.values(this.player.chemistry).reduce((prev, next) => {
+              return prev + next
+            }) || 0
       }
     },
 
     watch: {
       'player.player' (player) {
         if (player) {
-          const positionChemMap = `${this.player.position}:${player.position}`
-          this.chemistry.position = positionChem[positionChemMap]
+          this.updatePlayerChemistry({ index: this.index, player, type: 'position' })
         }
       },
 
@@ -73,10 +73,10 @@
         })
       },
 
-      updatePlayer (player, index) {
+      processUpdatePlayer (player, index) {
         // Current problem with this is it deletes the current instance and inserts a new one.
         // This kind of works in our current case but might cause problems in the future
-        store.dispatch({ type: 'UPDATE_PLAYER_PLAYER', player, index })
+        this.updatePlayer({ player, index })
         this.query = ''
         this.showInput = false
         this.results = []
