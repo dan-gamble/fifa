@@ -7,7 +7,7 @@
            v-show="showInput"
            debounce="200"
            v-el:input>
-    <span v-if="player.player">{{ player.player.common_name }}</span>
+    <span v-if="player.player">{{ player.player.common_name }} {{ player.player.workrate_att }} {{ player.player.workrate_def }}</span>
     <span>Chem: {{ overallChemistry }}</span>
     <div>
       <div v-for="result in results">
@@ -52,6 +52,7 @@
       'player.player' (player) {
         if (player) {
           this.updatePlayerChemistry({ index: this.index, player, type: 'position' })
+          this.updatePlayerChemistry({ index: this.index, player, type: 'links' })
         }
       },
 

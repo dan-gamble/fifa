@@ -29,6 +29,7 @@
 
     ready () {
       this.updatePlayerPositions({ formation: this.builder.selectedFormation })
+      this.updatePlayerLinks({ formation: this.builder.selectedFormation })
     },
 
     props: {
@@ -42,6 +43,7 @@
     watch: {
       'builder.selectedFormation' (val) {
         this.updatePlayerPositions({ formation: val })
+        this.updatePlayerLinks({ formation: val })
       }
     }
   }

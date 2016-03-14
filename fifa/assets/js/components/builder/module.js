@@ -1,4 +1,5 @@
 import positionChem from './utils/positionChem'
+import positionLinks from './utils/positionLinks'
 import positionMap from './utils/positionMap'
 
 const state = {
@@ -29,7 +30,9 @@ const state = {
         boost: 0
       },
       player: {},
-      position: ''
+      position: '',
+      links: [],
+      totalLinks: 0
     },
     1: {
       chemistry: {
@@ -38,7 +41,9 @@ const state = {
         boost: 0
       },
       player: {},
-      position: ''
+      position: '',
+      links: [],
+      totalLinks: 0
     },
     2: {
       chemistry: {
@@ -47,7 +52,9 @@ const state = {
         boost: 0
       },
       player: {},
-      position: ''
+      position: '',
+      links: [],
+      totalLinks: 0
     },
     3: {
       chemistry: {
@@ -56,7 +63,9 @@ const state = {
         boost: 0
       },
       player: {},
-      position: ''
+      position: '',
+      links: [],
+      totalLinks: 0
     },
     4: {
       chemistry: {
@@ -65,7 +74,9 @@ const state = {
         boost: 0
       },
       player: {},
-      position: ''
+      position: '',
+      links: [],
+      totalLinks: 0
     },
     5: {
       chemistry: {
@@ -74,7 +85,9 @@ const state = {
         boost: 0
       },
       player: {},
-      position: ''
+      position: '',
+      links: [],
+      totalLinks: 0
     },
     6: {
       chemistry: {
@@ -83,7 +96,9 @@ const state = {
         boost: 0
       },
       player: {},
-      position: ''
+      position: '',
+      links: [],
+      totalLinks: 0
     },
     7: {
       chemistry: {
@@ -92,7 +107,9 @@ const state = {
         boost: 0
       },
       player: {},
-      position: ''
+      position: '',
+      links: [],
+      totalLinks: 0
     },
     8: {
       chemistry: {
@@ -101,7 +118,9 @@ const state = {
         boost: 0
       },
       player: {},
-      position: ''
+      position: '',
+      links: [],
+      totalLinks: 0
     },
     9: {
       chemistry: {
@@ -110,7 +129,9 @@ const state = {
         boost: 0
       },
       player: {},
-      position: ''
+      position: '',
+      links: [],
+      totalLinks: 0
     },
     10: {
       chemistry: {
@@ -119,20 +140,14 @@ const state = {
         boost: 0
       },
       player: {},
-      position: ''
+      position: '',
+      links: [],
+      totalLinks: 0
     }
   }
 }
 
 const mutations = {
-  'UPDATE_PLAYER_POSITIONS' (state, data) {
-    const positions = positionMap[data.formation]
-
-    for (const player in state.players) {
-      state.players[player].position = positions[player]
-    }
-  },
-
   'UPDATE_SELECTED_FORMATION' (state, val) {
     state.selectedFormation = val
   },
@@ -142,9 +157,46 @@ const mutations = {
   },
 
   'UPDATE_PLAYER_CHEMISTRY' (state, data) {
-    const positionChemMap = `${state.players[data.index].position}:${data.player.position}`
+    if (data.type === 'position') {
+      const positionChemMap = `${state.players[data.index].position}:${data.player.position}`
 
-    state.players[data.index].chemistry[data.type] = positionChem[positionChemMap]
+      state.players[data.index].chemistry[data.type] = positionChem[positionChemMap]
+    } else if (data.type === 'links') {
+      let total = 0
+      let totalLinks = 0
+
+      for (const link of state.players[data.index].links) {
+        if (state.players[link].player.hasOwnProperty('league') &&
+            state.players[data.index].player.hasOwnProperty('league')) {
+          totalLinks += 1
+        }
+
+        if (state.players[link].player.league &&
+            state.players[data.index].player.league &&
+            state.players[link].player.league.ea_id === state.players[data.index].player.league.ea_id) {
+          total += ((1 / 3)) * 3
+        }
+      }
+
+      console.log(total, totalLinks)
+    }
+  },
+
+  'UPDATE_PLAYER_LINKS' (state, data) {
+    const links = positionLinks[data.formation]
+
+    for (const player in state.players) {
+      state.players[player].links = links[player]
+      state.players[player].totalLinks = links[player].length
+    }
+  },
+
+  'UPDATE_PLAYER_POSITIONS' (state, data) {
+    const positions = positionMap[data.formation]
+
+    for (const player in state.players) {
+      state.players[player].position = positions[player]
+    }
   }
 }
 
