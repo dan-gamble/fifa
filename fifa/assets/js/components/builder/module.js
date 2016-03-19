@@ -171,8 +171,8 @@ const mutations = {
           totalLinks += 1
         }
 
-        if (state.players[link].player.league &&
-            state.players[data.index].player.league &&
+        if (state.players[link].player.hasOwnProperty('league') &&
+            state.players[data.index].player.hasOwnProperty('league') &&
             state.players[link].player.league.ea_id === state.players[data.index].player.league.ea_id) {
           total += ((1 / 3)) * 3
         }
