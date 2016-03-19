@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^builder/', include('fifa.apps.builder.urls', namespace='builder')),
     url(r'^nations/', include('fifa.apps.nations.urls', namespace='nations')),
+    url(r'^leagues/', include('fifa.apps.leagues.urls', namespace='leagues')),
+    url(r'^clubs/', include('fifa.apps.clubs.urls', namespace='clubs')),
     url(r'^players/', include('fifa.apps.players.urls', namespace='players'))
 ]
 

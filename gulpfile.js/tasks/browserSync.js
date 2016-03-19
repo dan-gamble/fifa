@@ -5,7 +5,7 @@ var gulp        = require('gulp')
 var browserSyncTask = function() {
   browserSync.init(config.tasks.browserSync)
 
-  gulp.watch(['./fifa/apps/*/templates/**/*.html', './fifa/templates/**/*.html'], browserSync.reload)
+  gulp.watch(['fifa/apps/*/jinja2/**/*.html', 'fifa/jinja2/**/*.html'], browserSync.reload)
 }
 gulp.task('browserSync', browserSyncTask)
 module.exports = browserSyncTask

@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block primary_content %}
+{% block main %}
   {% for nation in object_list %}
     <div>
       <a href="{{ url('nations:nation', kwargs={'slug': nation.slug}) }}">{{ nation }}</a>
+      <img alt="" src="{{ nation.image_md }}">
     </div>
   {% endfor %}
-
 {% endblock %}

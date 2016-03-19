@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  {% for league in object_list %}
+    <div>
+      <a href="{{ url('leagues:league', kwargs={'slug': league.slug}) }}">{{ league }}</a>
+       -
+      <a href="{{ url('nations:nation', kwargs={'slug': league.nation.slug}) }}">{{ league.nation }}</a>
+    </div>
+  {% endfor %}
+{% endblock %}

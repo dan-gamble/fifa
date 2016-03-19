@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  {% for player in object_list %}
+    <div>
+      <a href="{{ url('players:player', kwargs={'slug': player.slug}) }}">{{ player }}</a>
+       - <a href="{{ url('clubs:club', kwargs={'slug': player.club.slug}) }}">{{ player.club }}</a>
+       - <a href="{{ url('leagues:league', kwargs={'slug': player.league.slug}) }}">{{ player.league }}</a>
+       - <a href="{{ url('nations:nation', kwargs={'slug': player.nation.slug}) }}">{{ player.nation }}</a>
+    </div>
+  {% endfor %}
+
+  {{ current_query }}
+
+  {% if is_paginated %}
+    <div class="pagination-centered">
+      <ul class="pagination">
+        {% if page_obj.has_previous() %}
+          <li class="arrow"><a href="?page={{ page_obj.previous_page_number() }}">&laquo;</a></li>
+        {% endif %}
+        {{ page_obj.number }}
+        {% if page_obj.has_next() %}
+          <li class="arrow"><a href="?{{ current_query }}&page={{ page_obj.next_page_number() }}">&raquo;</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  {% endif %}
+
+{% endblock %}

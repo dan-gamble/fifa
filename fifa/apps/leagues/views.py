@@ -14,6 +14,9 @@ class LeagueList(ListView):
     model = League
     paginate_by = 25
 
+    def get_queryset(self):
+        return super(LeagueList, self).get_queryset().select_related('nation')
+
 
 class LeagueDetail(DetailView):
     model = League

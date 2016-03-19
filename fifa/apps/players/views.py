@@ -31,6 +31,18 @@ class PlayerList(ListView):
     model = Player
     paginate_by = 25
 
+    def get_queryset(self):
+        return super(PlayerList, self).get_queryset().select_related('club', 'league', 'nation')
+
+    def get_context_data(self, **kwargs):
+        context = super(PlayerList, self).get_context_data()
+
+        print(self.request.GET)
+
+        context['current_query'] = self.request.GET.urlencode()
+
+        return context
+
 
 class PlayerDetail(DetailView):
     model = Player

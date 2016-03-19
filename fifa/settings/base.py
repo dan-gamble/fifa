@@ -50,7 +50,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
         'DIRS': [
-            os.path.join(SITE_ROOT, 'jinja'),
+            os.path.join(SITE_ROOT, 'jinja2'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

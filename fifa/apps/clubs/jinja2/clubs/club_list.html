@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  {% for club in object_list %}
+    <div>
+      <a href="{{ url('clubs:club', kwargs={'slug': club.slug}) }}">{{ club }}</a>
+      <img alt="" src="{{ club.image_normal_sm }}">
+       -
+      <a href="{{ url('leagues:league', kwargs={'slug': club.league.slug}) }}">{{ club.league }}</a>
+    </div>
+  {% endfor %}
+{% endblock %}
