@@ -55,8 +55,7 @@ class PlayerList(ListView):
         context['att_workrate_options'] = Player.objects\
             .order_by('workrate_att')\
             .values_list('workrate_att', flat=True)\
-            .\
-            distinct()
+            .distinct()
 
         context['def_workrate_options'] = Player.objects\
             .order_by('workrate_def')\
