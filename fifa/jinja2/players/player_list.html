@@ -1,8 +1,101 @@
 {% extends 'base.html' %}
 
 {% block main %}
+  <style>
+  .player {
+    border-bottom: 1px solid #cecece;
+  }
+  </style>
+
+  <a href="{{ url('players:players') }}">Clear filters</a>
+
+  <div class="ftr-Outer">
+    <div class="ftr-Items">
+      <div class="ftr-Item">
+        <div class="ftr-Item_Label">Skill Moves</div>
+        <div class="ftr-Item_Options">
+          {% for option in skill_moves_options %}
+            <a href="{{ url(request=request.GET, get={'sm': option}) }}">{{ option }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ftr-Item">
+        <div class="ftr-Item_Label">Weak foot</div>
+        <div class="ftr-Item_Options">
+          {% for option in weak_foot_options %}
+            <a href="{{ url(request=request.GET, get={'wf': option}) }}">{{ option }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ftr-Item">
+        <div class="ftr-Item_Label">Att. Work rate</div>
+        <div class="ftr-Item_Options">
+          {% for option in att_workrate_options %}
+            <a href="{{ url(request=request.GET, get={'awr': option}) }}">{{ option }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ftr-Item">
+        <div class="ftr-Item_Label">Def. Work rate</div>
+        <div class="ftr-Item_Options">
+          {% for option in def_workrate_options %}
+            <a href="{{ url(request=request.GET, get={'dwr': option}) }}">{{ option }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ftr-Item">
+        <div class="ftr-Item_Label">Strong foot</div>
+        <div class="ftr-Item_Options">
+          {% for option in strong_foot_options %}
+            <a href="{{ url(request=request.GET, get={'sf': option}) }}">{{ option }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ftr-Item">
+        <div class="ftr-Item_Label">Position</div>
+        <div class="ftr-Item_Options">
+          {% for option in position_options %}
+            <a href="{{ url(request=request.GET, get={'pos': option}) }}">{{ option }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ftr-Item">
+        <div class="ftr-Item_Label">Age</div>
+        <div class="ftr-Item_Options">
+          {% for option in age_options %}
+            <a href="{{ url(request=request.GET, get={'age': option}) }}">{{ option }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ftr-Item">
+        <div class="ftr-Item_Label">Type</div>
+        <div class="ftr-Item_Options">
+          {% for option in type_options %}
+            <a href="{{ url(request=request.GET, get={'type': option}) }}">{{ option }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ftr-Item">
+        <div class="ftr-Item_Label">Color</div>
+        <div class="ftr-Item_Options">
+          {% for option in color_options %}
+            <a href="{{ url(request=request.GET, get={'color': option}) }}">{{ option }}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
   {% for player in object_list %}
-    <div>
+    <div class="player">
       <a href="{{ url('players:player', kwargs={'slug': player.slug}) }}">{{ player }}</a>
        - <a href="{{ url('clubs:club', kwargs={'slug': player.club.slug}) }}">{{ player.club }}</a>
        - <a href="{{ url('leagues:league', kwargs={'slug': player.league.slug}) }}">{{ player.league }}</a>
@@ -10,17 +103,15 @@
     </div>
   {% endfor %}
 
-  {{ current_query }}
-
   {% if is_paginated %}
     <div class="pagination-centered">
       <ul class="pagination">
         {% if page_obj.has_previous() %}
-          <li class="arrow"><a href="?page={{ page_obj.previous_page_number() }}">&laquo;</a></li>
+          <li class="arrow"><a href={{ url(request=request.GET, get={'page': page_obj.previous_page_number()}) }}>&laquo;</a></li>
         {% endif %}
         {{ page_obj.number }}
         {% if page_obj.has_next() %}
-          <li class="arrow"><a href="?{{ current_query }}&page={{ page_obj.next_page_number() }}">&raquo;</a></li>
+          <li class="arrow"><a href="{{ url(request=request.GET, get={'page': page_obj.next_page_number()}) }}">&raquo;</a></li>
         {% endif %}
       </ul>
     </div>

@@ -68,6 +68,7 @@ class Player(EaAsset, TimeStampedModel, models.Model):
     weight = models.PositiveIntegerField(blank=True, null=True)
 
     date_of_birth = models.DateField(blank=True, null=True)
+    age = models.PositiveIntegerField(blank=True, null=True)
 
     acceleration = models.PositiveIntegerField(blank=True, null=True)
     aggression = models.PositiveIntegerField(blank=True, null=True)
@@ -136,6 +137,7 @@ class Player(EaAsset, TimeStampedModel, models.Model):
     base_id = models.PositiveIntegerField(max_length=100, blank=True, null=True)
 
     class Meta:
+        ordering = ['-overall_rating', '-ea_id']
         verbose_name = 'Player'
         verbose_name_plural = 'Players'
 
