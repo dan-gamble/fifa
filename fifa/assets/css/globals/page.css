@@ -116,3 +116,57 @@
 .pg-Breadcrumb_Action {
   color: var(--Color_Dark);
 }
+
+/*
+|--------------------------------------------------------------------------
+| Page - Info
+|--------------------------------------------------------------------------
+|
+*/
+.pg-Info {
+  padding-top: 60px;
+  padding-bottom: @padding-top;
+}
+
+.pg-Info_Inner{
+  @include Grid_Container();
+}
+
+.pg-Info_Content {
+  @include Grid_Row();
+
+  align-items: center;
+}
+
+.pg-Info_Title {
+  @include Grid_Column(3, 12);
+
+  position: relative;
+
+  font-family: var(--Font_Family-oswald);
+  font-size: 38px;
+  line-height: 1.3;
+  text-transform: uppercase;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    right: -4px;
+    bottom: 0;
+
+    width: 4px;
+    height: 100%;
+
+    background-color: var(--Color_Yellow);
+  }
+}
+
+.pg-Info_Text {
+  @include Grid_Column(9, 12);
+
+  font-size: 15px;
+
+  color: #a6a6a6;
+}

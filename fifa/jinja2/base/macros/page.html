@@ -8,19 +8,30 @@
   </div>
 {% endmacro %}
 
-{% macro breadcrumb() %}
+{% macro breadcrumb(urls) %}
   <div class="pg-Breadcrumb">
     <div class="pg-Breadcrumb_Inner">
       <div class="pg-Breadcrumb_Items">
-        <div class="pg-Breadcrumb_Item">
-          <a class="pg-Breadcrumb_Action" href="#">Home</a>
-        </div>
+        {% for url in urls %}
+          <div class="pg-Breadcrumb_Item{{ ' pg-Breadcrumb_Item-current' if url.active else '' }}">
+            {% if not url.active %}
+              <a class="pg-Breadcrumb_Action" href="{{ url.url }}">{{ url.title }}</a>
+            {% else %}
+              {{ url.title }}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endmacro %}
 
-        <div class="pg-Breadcrumb_Item">
-          <a class="pg-Breadcrumb_Action" href="#">Players</a>
-        </div>
-
-        <div class="pg-Breadcrumb_Item pg-Breadcrumb_Item-current">Christopher Herrera</div>
+{% macro page_info() %}
+  <div class="pg-Info">
+    <div class="pg-Info_Inner">
+      <div class="pg-Info_Content">
+        <h3 class="pg-Info_Title">Morbi velit vel nisl blandit</h3>
+        <p class="pg-Info_Text">Aenean aliquam, dolor eu lacinia pellentesque, dui arcu condimentum nisl, quis sollicitudin mi lorem quis leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis sapien a ante rutrum pulvinar quis ac tellus. Proin facilisis dui at mollis tincidunt. Sed dignissim orci non arcu luctus pretium. Donec at ex aliquet, porttitor lacus eget, ullamcorper quam. Integer pellentesque egestas arcu, nec molestie leo sollicitudin et</p>
       </div>
     </div>
   </div>

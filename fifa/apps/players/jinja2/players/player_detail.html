@@ -3,8 +3,26 @@
 {% import 'players/macros/players.html' as playerMacros %}
 
 {% block content_above %}
+  {% set urls = [
+    {
+      'title': 'Home',
+      'url': '/',
+      'active': False
+    },
+    {
+      'title': 'Players',
+      'url': url('players:players'),
+      'active': False
+    },
+    {
+      'title': object.common_name,
+      'url': object.get_absolute_url,
+      'active': True
+    }
+  ] %}
+
   {{ page.strip(object.common_name) }}
-  {{ page.breadcrumb() }}
+  {{ page.breadcrumb(urls) }}
 {% endblock %}
 
 {% block content %}

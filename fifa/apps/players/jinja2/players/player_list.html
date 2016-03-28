@@ -2,15 +2,29 @@
 {% import 'base/macros/page.html' as page %}
 
 {% block content_above %}
+  {% set urls = [
+    {
+      'title': 'Home',
+      'url': '/',
+      'active': False
+    },
+    {
+      'title': 'Players',
+      'url': url('players:players'),
+      'active': True
+    }
+  ] %}
+
   {{ page.strip('Players') }}
-  {{ page.breadcrumb() }}
+  {{ page.breadcrumb(urls) }}
+  {{ page.page_info() }}
 {% endblock %}
 
 {% block main %}
   <style>
-  .player {
-    border-bottom: 1px solid #cecece;
-  }
+    .player {
+      border-bottom: 1px solid #cecece;
+    }
   </style>
 
   <a href="{{ url('players:players') }}">Clear filters</a>
@@ -104,9 +118,9 @@
     <div class="player">
       {{ player.get_absolute_url() }}
       <a href="{{ url('players:player', kwargs={'slug': player.slug}) }}">{{ player }}</a>
-       - <a href="{{ url('clubs:club', kwargs={'slug': player.club.slug}) }}">{{ player.club }}</a>
-       - <a href="{{ url('leagues:league', kwargs={'slug': player.league.slug}) }}">{{ player.league }}</a>
-       - <a href="{{ url('nations:nation', kwargs={'slug': player.nation.slug}) }}">{{ player.nation }}</a>
+      - <a href="{{ url('clubs:club', kwargs={'slug': player.club.slug}) }}">{{ player.club }}</a>
+      - <a href="{{ url('leagues:league', kwargs={'slug': player.league.slug}) }}">{{ player.league }}</a>
+      - <a href="{{ url('nations:nation', kwargs={'slug': player.nation.slug}) }}">{{ player.nation }}</a>
     </div>
   {% endfor %}
 

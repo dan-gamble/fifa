@@ -1,6 +1,24 @@
 import urllib
 
+from django.apps import apps
+from django.conf import settings
 from django.core.urlresolvers import reverse
+
+
+def breadcrumb():
+    all_apps = settings.INSTALLED_APPS
+    app_list = []
+    app_models = []
+
+    for app in all_apps:
+        if 'fifa.' in app:
+            app_list.append(app.replace('fifa.apps.', ''))
+
+    for app in app_list:
+        app_models = apps.get_app_config(app).get_models()
+
+        for model in app_models:
+            print(model)
 
 
 def build_url(*args, **kwargs):
