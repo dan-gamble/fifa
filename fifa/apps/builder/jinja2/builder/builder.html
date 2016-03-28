@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% import 'base/macros/page.html' as page %}
+
+{% block content_above %}
+  {{ page.page_strip('Builder') }}
+{% endblock %}
 
 {% block content %}
   <builder formations="{{ formations }}"></builder>

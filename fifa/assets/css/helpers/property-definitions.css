@@ -3,7 +3,7 @@
 
   --Font_Family-body: 'Open Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
 
-  --Grid_Gutter: 40px;
+  --Grid_Gutter: 20px;
   --Grid_Container: 1200px;
   --Grid_Constrained: 1600px;
 }
