@@ -16,18 +16,12 @@
   /* Add $Grid_Gutter to the container as the 'container' should be the size
   /* of the content not the actual div
   /* ------------------------ */
-  max-width: calc($Grid_Container + $Grid_Gutter);
+  max-width: calc(var(--Grid_Container) + var(--Grid_Gutter));
   width: 100%;
   margin-right: auto;
   margin-left: @margin-right;
-  padding-right: $Grid_Gutter;
+  padding-right: calc(var(--Grid_Gutter) / 2);
   padding-left: @padding-right;
-
-  @media (--lg) {
-    max-width: calc($Grid_Container + $Grid_Gutter--lg);
-    padding-right: calc($Grid_Gutter--lg / 2);
-    padding-left: @padding-right;
-  }
 }
 
 /*
@@ -39,17 +33,12 @@
 | widths consistent
 |
 */
-@mixin Grid_Row($flex: false) {
-  margin-right: -calc($Grid_Gutter / 2);
+@mixin Grid_Row($flex: true) {
+  margin-right: -calc(var(--Grid_Gutter) / 2);
   margin-left: @margin-right;
 
   @if $flex {
     display: flex;
-  }
-
-  @media (--lg) {
-    margin-right: -calc($Grid_Gutter--lg / 2);
-    margin-left: @margin-right;
   }
 }
 
@@ -62,17 +51,10 @@
 |
 */
 @mixin Grid_Column($count: 0, $total: 0) {
-  margin-right: calc($Grid_Gutter / 2);
+  margin-right: calc(var(--Grid_Gutter) / 2);
   margin-left: @margin-right;
 
-  @media (--lg) {
-    margin-right: calc($Grid_Gutter--lg / 2);
-    margin-left: @margin-right;
-
-    @if $count {
-      flex-basis: @width;
-
-      width: calc(percentage($count, $total) - $Grid_Gutter--lg);
-    }
+  @if $count {
+    width: calc(percentage($count, $total) - var(--Grid_Gutter));
   }
 }

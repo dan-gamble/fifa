@@ -1,5 +1,9 @@
 :root {
-  --Grid_Gutter: 30px;
-  --Grid_Container: 1170px;
+  --Color_Light: #f2f0f0;
+
+  --Font_Family-body: 'Open Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+
+  --Grid_Gutter: 40px;
+  --Grid_Container: 1200px;
   --Grid_Constrained: 1600px;
 }

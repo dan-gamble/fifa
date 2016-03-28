@@ -1,0 +1,19 @@
+/*
+|--------------------------------------------------------------------------
+| Global search
+|--------------------------------------------------------------------------
+| @namespace: gbs-
+|
+*/
+.gbs-Input {
+  height: 40px;
+  width: 100%;
+  padding: 10px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  background-color: var(--Color_Light);
+  border-radius: 3px;
+  border: 1px solid #979797;
+}
