@@ -3,6 +3,10 @@
 import os
 from sys import path
 
+import environ
+
+env = environ.Env()
+
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 SITE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SITE_NAME = os.path.basename(BASE_DIR)
@@ -45,6 +49,18 @@ ASSETFILES_ROOT = os.path.join(BASE_DIR, 'assets')
 
 # Note: This key should only be used for development and testing.
 SECRET_KEY = r"ur97rr4qrrv&fz7egjn7vx#ohgb-r6thho%qn#v#t!@fez507u"
+
+
+# DATABASE CONFIGURATION
+# ------------------------------------------------------------------------------
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
+DATABASES = {
+    # Raises ImproperlyConfigured exception if DATABASE_URL not in os.environ
+    'default': env.db("DATABASE_URL",
+                      default="postgres://{% if cookiecutter.windows == 'y' %}localhost{% endif %}/{{"
+                              "cookiecutter.repo_name}}"),
+}
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 TEMPLATES = [
     {

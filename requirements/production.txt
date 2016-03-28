@@ -1,3 +1,6 @@
 # Production dependencies go here.
 # There should not be any there
 -r base.txt
+
+opbeat
+gunicorn==19.4.5

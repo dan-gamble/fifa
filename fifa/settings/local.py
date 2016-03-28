@@ -9,18 +9,6 @@ TEMPLATE_DEBUG = DEBUG
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fifa',  # Database
-        'USER': os.getlogin(),  # Blank normally
-        'PASSWORD': '',  # Blank normally
-        'HOST': 'localhost',  # localhost
-        'PORT': '',  # Blank normally (5432)
-        'CONN_MAX_AGE': 600
-    }
-}
-
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',

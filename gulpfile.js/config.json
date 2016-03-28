@@ -10,7 +10,7 @@
       "notify": false,
       "open": false,
       "proxy": {
-        "target": "0.0.0.0:8000"
+        "target": "192.168.99.102:8000"
       }
     },
 
