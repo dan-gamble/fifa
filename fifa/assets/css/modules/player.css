@@ -6,10 +6,10 @@
 |
 */
 .plyr-Strip {
-  background-image: linear-gradient(to bottom, #1e6679 0, #214c5e 100%);
+  background-image: url(data:image/svg+xml;base64,PHN2Zw0KICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciDQogIHdpZHRoPSIzMiINCiAgaGVpZ2h0PSIxOCINCiAgdmlld0JveD0iMCAwIDMyIDE4Ij4NCiAgPHBhdGgNCiAgICBmaWxsPSJub25lIg0KICAgIHN0cm9rZT0iIzk5OSINCiAgICBzdHJva2Utb3BhY2l0eT0iLjMiDQogICAgc3Ryb2tlLXdpZHRoPSIuMjUiDQogICAgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIg0KICAgIGQ9Ik0uMDEgMTguNzgzTDMyLjQ5Ni4wNU0zMi40NjYgMTguNjY2TDAtLjA5OE0uMTQgMHYxOC43MzRNMTYuMzYgMHYxOC43MzQiLz4NCjwvc3ZnPg0K), linear-gradient(to bottom, #1e6679 0, #214c5e 100%);
   background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 290px;
+  background-repeat: repeat, no-repeat;
+  background-size: 32px 18px, 100% 290px;
 }
 
 .plyr-Strip_Inner {

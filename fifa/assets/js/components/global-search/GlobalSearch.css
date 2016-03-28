@@ -5,25 +5,73 @@
 | @namespace: gbs-
 |
 */
+.grow-transition {
+  width: 100%;
+
+  opacity: 1;
+
+  transition: width 0.3s ease, opacity 0.2s ease;
+}
+
+.grow-enter,
+.grow-leave {
+  width: 0;
+
+  opacity: 0;
+}
+
 .gbs-Outer {
   position: relative;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  display: flex;
+  width: 100%;
+  height: 30px;
+}
+
+.gbs-Icon {
+  position: relative;
+  z-index: 2;
+
+  color: #fff;
+  cursor: pointer;
+
+  &::before {
+    font-awesome: search;
+  }
 }
 
 .gbs-Input {
-  height: 40px;
-  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+
+  height: 30px;
   padding: 10px;
 
   font-size: 14px;
   font-weight: 600;
 
-  border-radius: 3px;
-  border: 1px solid #979797;
-  color: #4a4a4a;
+  background-color: #a6a6a6;
+  border: 0;
+  color: #fff;
+
+  &:focus {
+    background-color: #858585;
+    outline: 0;
+  }
+
+  &::placeholder {
+    color: #fff;
+  }
 }
 
 .gbs-Results {
   position: absolute;
+  top: 100%;
   right: 0;
   left: 0;
 

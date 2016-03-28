@@ -34,17 +34,17 @@
 
             <div class="plyr-Strip_ContentItem">
               <div class="plyr-Strip_ContentItemLabel">Club</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.club }}</div>
+              <a class="plyr-Strip_ContentItemValue" href="{{ url('clubs:club', kwargs={'slug': object.club.slug}) }}">{{ object.club }}</a>
             </div>
 
             <div class="plyr-Strip_ContentItem">
               <div class="plyr-Strip_ContentItemLabel">League</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.league }}</div>
+              <a class="plyr-Strip_ContentItemValue" href="{{ url('leagues:league', kwargs={'slug': object.league.slug}) }}">{{ object.league }}</a>
             </div>
 
             <div class="plyr-Strip_ContentItem">
               <div class="plyr-Strip_ContentItemLabel">Nation</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.nation }}</div>
+              <a class="plyr-Strip_ContentItemValue" href="{{ url('nations:nation', kwargs={'slug': object.nation.slug}) }}">{{ object.nation }}</a>
             </div>
 
             <div class="plyr-Strip_ContentItem">

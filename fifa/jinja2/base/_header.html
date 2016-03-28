@@ -2,10 +2,14 @@
   <div class="hd-Header_Inner">
     <a class="hd-Logo" href="/"></a>
 
+    <div class="hd-Search">
+      <global-search></global-search>
+    </div>
+
     <nav class="hd-Nav">
-      <a class="hd-Nav_Link" href="#">Home</a>
+      <a class="hd-Nav_Link" href="/">Home</a>
       <a class="hd-Nav_Link" href="#">About</a>
-      <a class="hd-Nav_Link" href="#">Players</a>
+      <a class="hd-Nav_Link" href="{{ url('players:players') }}">Players</a>
       <a class="hd-Nav_Link" href="#">Match</a>
       <a class="hd-Nav_Link" href="#">Results</a>
       <a class="hd-Nav_Link" href="#">Gallery</a>
