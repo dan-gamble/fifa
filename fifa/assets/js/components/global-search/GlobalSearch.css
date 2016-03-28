@@ -5,6 +5,10 @@
 | @namespace: gbs-
 |
 */
+.gbs-Outer {
+  position: relative;
+}
+
 .gbs-Input {
   height: 40px;
   width: 100%;
@@ -16,4 +20,31 @@
   background-color: var(--Color_Light);
   border-radius: 3px;
   border: 1px solid #979797;
+  color: #4a4a4a;
+}
+
+.gbs-Results {
+  position: absolute;
+  right: 0;
+  left: 0;
+
+  background-color: #f2f0f0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: @border-bottom-right-radius;
+  border: 1px solid #979797;
+  color: #4a4a4a;
+}
+
+.gbs-Result {
+  align-items: center;
+
+  display: flex;
+  height: 40px;
+  padding: 0 10px;
+
+  border-bottom: 1px solid rgba(#979797, 0.5);
+
+  &:last-child {
+    border-bottom: 0;
+  }
 }

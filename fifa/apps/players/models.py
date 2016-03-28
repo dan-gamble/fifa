@@ -1,4 +1,5 @@
 from django.contrib.postgres.fields import JSONField
+from django.core import urlresolvers
 from django.db import models
 from fifa.apps.models import EaAsset, TimeStampedModel
 from ..clubs.models import Club
@@ -41,6 +42,8 @@ PLAYER_POSITION_LINE_CHOICES = (
 
 
 class Player(EaAsset, TimeStampedModel, models.Model):
+    cached_url = models.CharField(max_length=1000, null=True, blank=True)
+
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     common_name = models.CharField(max_length=100)
@@ -143,3 +146,21 @@ class Player(EaAsset, TimeStampedModel, models.Model):
 
     def __str__(self):
         return self.common_name
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        super(Player, self).save()
+
+        self.get_absolute_url(False)
+
+    def get_absolute_url(self, cached=False):
+        if self.cached_url and cached:
+            return self.cached_url
+
+        url = urlresolvers.reverse('players:player', kwargs={'slug': self.slug})
+
+        if url != self.cached_url:
+            self.cached_url = url
+            self.save()
+
+        return url

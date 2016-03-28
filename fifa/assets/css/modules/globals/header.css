@@ -6,6 +6,9 @@
 |
 */
 .hd-Outer {
+  position: relative;
+  z-index: 100;
+
   background-color: #4c5766;
   color: var(--Color_Light);
 }

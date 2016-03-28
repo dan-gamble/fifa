@@ -96,6 +96,7 @@
 
   {% for player in object_list %}
     <div class="player">
+      {{ player.get_absolute_url() }}
       <a href="{{ url('players:player', kwargs={'slug': player.slug}) }}">{{ player }}</a>
        - <a href="{{ url('clubs:club', kwargs={'slug': player.club.slug}) }}">{{ player.club }}</a>
        - <a href="{{ url('leagues:league', kwargs={'slug': player.league.slug}) }}">{{ player.league }}</a>
