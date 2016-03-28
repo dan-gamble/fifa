@@ -1,14 +1,136 @@
 {% extends 'base.html' %}
 {% import 'base/macros/page.html' as page %}
+{% import 'players/macros/players.html' as playerMacros %}
 
 {% block content_above %}
-  {{ page.page_strip('{} ({} {})'.format(object.common_name, object.first_name, object.last_name), object) }}
+  {{ page.strip(object.common_name) }}
+  {{ page.breadcrumb() }}
 {% endblock %}
 
-{% block main %}
-  <div>
-    {{ object.common_name }}
-    {{ object.slug }}
-    {{ object.age }}
+{% block content %}
+  <div class="plyr-Strip">
+    <div class="plyr-Strip_Inner">
+      <div class="plyr-Card_Surround">
+        <img alt="" src="http://placehold.it/200x300">
+      </div>
+
+      <div class="plyr-Strip_Content">
+        <div class="plyr-Strip_ContentTop">
+          <div class="plyr-Strip_Rating">{{ object.overall_rating }}</div>
+          <h2 class="plyr-Strip_Name">{{ object.common_name }}</h2>
+        </div>
+
+        <div class="plyr-Strip_ContentBottom">
+          <div class="plyr-Strip_ContentItems">
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Skill Moves</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.skill_moves }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Weak Foot</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.weak_foot }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Club</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.club }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">League</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.league }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Nation</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.nation }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Age</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.age }} ({{ object.date_of_birth }})</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Height</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.height }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Workrates</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.workrate_att }} | {{ object.workrate_def }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Position</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.position }}</div>
+            </div>
+          </div>
+
+          <div class="plyr-Strip_ContentItems">
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Skill Moves</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.skill_moves }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Weak Foot</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.weak_foot }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Club</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.club }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">League</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.league }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Nation</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.nation }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Age</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.age }} ({{ object.date_of_birth }})</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Height</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.height }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Workrates</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.workrate_att }} | {{ object.workrate_def }}</div>
+            </div>
+
+            <div class="plyr-Strip_ContentItem">
+              <div class="plyr-Strip_ContentItemLabel">Position</div>
+              <div class="plyr-Strip_ContentItemValue">{{ object.position }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="plyr-StatStrip">
+    <div class="plyr-StatStrip_Inner">
+      <hr>
+
+      <div class="plyr-StatStrip_Items">
+        {{ playerMacros.stats_strip_item('Pace', object.card_att_1, object.pace_stats().items()) }}
+        {{ playerMacros.stats_strip_item('Shooting', object.card_att_2, object.shooting_stats().items()) }}
+        {{ playerMacros.stats_strip_item('Passing', object.card_att_3, object.passing_stats().items()) }}
+        {{ playerMacros.stats_strip_item('Dribbling', object.card_att_4, object.dribbling_stats().items()) }}
+        {{ playerMacros.stats_strip_item('Defending', object.card_att_5, object.defending_stats().items()) }}
+        {{ playerMacros.stats_strip_item('Physicality', object.card_att_6, object.physicality_stats().items()) }}
+      </div>
+    </div>
   </div>
 {% endblock %}

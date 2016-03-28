@@ -5,6 +5,11 @@
 | @namespace: pg-
 |
 */
+.pg-Inner {
+  @include Grid_Container();
+
+  padding-top: 70px;
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +40,79 @@
   text-transform: uppercase;
 
   color: #fff;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Page - Breadcrumbs
+|--------------------------------------------------------------------------
+|
+*/
+.pg-Breadcrumb {
+  position: relative;
+
+  font-size: 14px;
+  line-height: 1.3;
+
+  background-color: var(--Color_Yellow);
+}
+
+.pg-Breadcrumb_Inner {
+  @include Grid_Container();
+
+  position: relative;
+
+  align-items: center;
+
+  display: flex;
+  height: 45px;
+  padding-left: 45px;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    right: calc(100% - 24px);
+    bottom: 0;
+    z-index: 0;
+
+    display: block;
+    width: 50vw;
+
+    background-color: var(--Color_Grey);
+    transform: skew(-var(--Global_Skew));
+  }
+}
+
+.pg-Breadcrumb_Items {
+  display: flex;
+}
+
+.pg-Breadcrumb_Item {
+  display: flex;
+
+  &::after {
+    content: '';
+
+    margin: 0 15px;
+
+    font-awesome: angle-right;
+
+    color: #fff;
+  }
+
+  &.pg-Breadcrumb_Item-current {
+    font-weight: 500;
+
+    color: #fff;
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.pg-Breadcrumb_Action {
+  color: var(--Color_Dark);
 }

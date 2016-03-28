@@ -77,32 +77,32 @@ class Player(EaAsset, TimeStampedModel, models.Model):
     aggression = models.PositiveIntegerField(blank=True, null=True)
     agility = models.PositiveIntegerField(blank=True, null=True)
     balance = models.PositiveIntegerField(blank=True, null=True)
-    ballcontrol = models.PositiveIntegerField(blank=True, null=True)
+    ball_control = models.PositiveIntegerField(blank=True, null=True)
     crossing = models.PositiveIntegerField(blank=True, null=True)
     curve = models.PositiveIntegerField(blank=True, null=True)
     dribbling = models.PositiveIntegerField(blank=True, null=True)
     finishing = models.PositiveIntegerField(blank=True, null=True)
-    freekickaccuracy = models.PositiveIntegerField(blank=True, null=True)
-    gkdiving = models.PositiveIntegerField(blank=True, null=True)
-    gkhandling = models.PositiveIntegerField(blank=True, null=True)
-    gkkicking = models.PositiveIntegerField(blank=True, null=True)
-    gkpositioning = models.PositiveIntegerField(blank=True, null=True)
-    gkreflexes = models.PositiveIntegerField(blank=True, null=True)
-    headingaccuracy = models.PositiveIntegerField(blank=True, null=True)
+    free_kick_accuracy = models.PositiveIntegerField(blank=True, null=True)
+    gk_diving = models.PositiveIntegerField(blank=True, null=True)
+    gk_handling = models.PositiveIntegerField(blank=True, null=True)
+    gk_kicking = models.PositiveIntegerField(blank=True, null=True)
+    gk_positioning = models.PositiveIntegerField(blank=True, null=True)
+    gk_reflexes = models.PositiveIntegerField(blank=True, null=True)
+    heading_accuracy = models.PositiveIntegerField(blank=True, null=True)
     interceptions = models.PositiveIntegerField(blank=True, null=True)
     jumping = models.PositiveIntegerField(blank=True, null=True)
-    longpassing = models.PositiveIntegerField(blank=True, null=True)
-    longshots = models.PositiveIntegerField(blank=True, null=True)
+    long_passing = models.PositiveIntegerField(blank=True, null=True)
+    long_shots = models.PositiveIntegerField(blank=True, null=True)
     marking = models.PositiveIntegerField(blank=True, null=True)
     penalties = models.PositiveIntegerField(blank=True, null=True)
     positioning = models.PositiveIntegerField(blank=True, null=True)
     potential = models.PositiveIntegerField(blank=True, null=True)
     reactions = models.PositiveIntegerField(blank=True, null=True)
-    shortpassing = models.PositiveIntegerField(blank=True, null=True)
-    shotpower = models.PositiveIntegerField(blank=True, null=True)
-    slidingtackle = models.PositiveIntegerField(blank=True, null=True)
-    sprintspeed = models.PositiveIntegerField(blank=True, null=True)
-    standingtackle = models.PositiveIntegerField(blank=True, null=True)
+    short_passing = models.PositiveIntegerField(blank=True, null=True)
+    shot_power = models.PositiveIntegerField(blank=True, null=True)
+    sliding_tackle = models.PositiveIntegerField(blank=True, null=True)
+    sprint_speed = models.PositiveIntegerField(blank=True, null=True)
+    standing_tackle = models.PositiveIntegerField(blank=True, null=True)
     stamina = models.PositiveIntegerField(blank=True, null=True)
     strength = models.PositiveIntegerField(blank=True, null=True)
     vision = models.PositiveIntegerField(blank=True, null=True)
@@ -164,3 +164,61 @@ class Player(EaAsset, TimeStampedModel, models.Model):
             self.save()
 
         return url
+
+    def pace_stats(self):
+        return {
+            'Acceleration': self.acceleration,
+            'Sprint speed': self.sprint_speed
+        }
+
+    def shooting_stats(self):
+        return {
+            'Positioning': self.positioning,
+            'Finishing': self.finishing,
+            'Shot power': self.shot_power,
+            'Long shots': self.long_shots,
+            'Volleys': self.volleys,
+            'Penalties': self.penalties,
+        }
+
+    def passing_stats(self):
+        return {
+            'Vision': self.vision,
+            'Crossing': self.crossing,
+            'Free kick accuracy': self.free_kick_accuracy,
+            'Short passing': self.short_passing,
+            'Long passing': self.long_passing,
+            'Curve': self.curve,
+        }
+
+    def dribbling_stats(self):
+        return {
+            'Agility': self.agility,
+            'Balance': self.balance,
+            'Reactions': self.reactions,
+            'Ball control': self.ball_control,
+            'Dribbling': self.dribbling,
+        }
+
+    def defending_stats(self):
+        return {
+            'Interceptions': self.interceptions,
+            'Heading accuracy': self.heading_accuracy,
+            'Marking': self.marking,
+            'Standing tackle': self.standing_tackle,
+            'Sliding tackle': self.sliding_tackle,
+        }
+
+    def physicality_stats(self):
+        return {
+            'Jumping': self.jumping,
+            'Stamina': self.stamina,
+            'Strength': self.strength,
+            'Aggression': self.aggression,
+        }
+
+    def all_stats(self):
+        return [
+            self.pace_stats(), self.shooting_stats(), self.passing_stats(),
+            self.dribbling_stats(), self.defending_stats(), self.physicality_stats()
+        ]

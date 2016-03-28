@@ -1,0 +1,27 @@
+{% macro stats_item(label, value) %}
+  <div class="plyr-Stats_Item">
+    {{ label }}
+    <span class="plyr-Stats_ItemRating plyr-Stats_ItemRating-{{ value|color_string }}">{{ value }}</span>
+  </div>
+{% endmacro %}
+
+{% macro stats_strip_item(label, value, stats) %}
+  <div class="plyr-StatStrip_Item">
+    <div class="plyr-Stats">
+      <h4 class="plyr-Stats_Title">
+        {{ label }}
+        <span class="plyr-Stats_TitleRating plyr-Stats_TitleRating-{{ value|color_string }}">{{ value }}</span>
+      </h4>
+
+      <svg class="plyr-Stats_BarGraph">
+        <rect class="plyr-Stats_Bar plyr-Stats_Bar-{{ value|color_string }}" width="{{ value }}%"></rect>
+      </svg>
+
+      <div class="plyr-Stats_Items">
+        {% for k, v in stats %}
+          {{ stats_item(k, v) }}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endmacro %}

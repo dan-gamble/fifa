@@ -2,7 +2,8 @@
 {% import 'base/macros/page.html' as page %}
 
 {% block content_above %}
-  {{ page.page_strip('Players') }}
+  {{ page.strip('Players') }}
+  {{ page.breadcrumb() }}
 {% endblock %}
 
 {% block main %}

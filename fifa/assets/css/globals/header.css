@@ -69,9 +69,9 @@
     z-index: -1;
 
     display: block;
-    width: 9999px;
+    width: 50vw;
 
-    transform: skew(-30deg);
+    transform: skew(-var(--Global_Skew));
   }
 
   &::before {

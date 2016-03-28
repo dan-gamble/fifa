@@ -1,8 +1,26 @@
-{% macro page_strip(title) %}
+{% macro strip(title) %}
   <div class="pg-Strip">
     <div class="pg-Strip_Inner">
       <div class="pg-Strip_Content">
         <h1 class="pg-Strip_Title">{{ title }}</h1>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro breadcrumb() %}
+  <div class="pg-Breadcrumb">
+    <div class="pg-Breadcrumb_Inner">
+      <div class="pg-Breadcrumb_Items">
+        <div class="pg-Breadcrumb_Item">
+          <a class="pg-Breadcrumb_Action" href="#">Home</a>
+        </div>
+
+        <div class="pg-Breadcrumb_Item">
+          <a class="pg-Breadcrumb_Action" href="#">Players</a>
+        </div>
+
+        <div class="pg-Breadcrumb_Item pg-Breadcrumb_Item-current">Christopher Herrera</div>
       </div>
     </div>
   </div>

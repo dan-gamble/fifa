@@ -8,4 +8,5 @@
   max-width: var(--Grid_Constrained);
   margin-right: auto;
   margin-left: auto;
+  padding-top: 70px;
 }

@@ -1,14 +1,25 @@
 :root {
+  --Color_Dark: #363533;
   --Color_Grey: #858585;
   --Color_Yellow: #ffc722;
   --Color_Yellow-dark: #f2bd20;
 
+  --Color_Poor: #bf3030;
+  --Color_Fair: #d47c00;
+  --Color_Average: #f2b600;
+  --Color_Good: #90c039;
+  --Color_Great: #54a71b;
+
   --Font_Family-body: 'Work Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
   --Font_Family-oswald: 'Oswald', 'Helvetica Neue', 'Helvetica', sans-serif;
+
+  --Font_Size-large: 38px;
 
   --Grid_Gutter: 20px;
   --Grid_Container: 1170px;
   --Grid_Constrained: 1600px;
+
+  --Global_Skew: 30deg;
 
   /**
   * Header
