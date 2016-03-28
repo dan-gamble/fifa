@@ -1,0 +1,126 @@
+/*
+|--------------------------------------------------------------------------
+| Header
+|--------------------------------------------------------------------------
+| @namespace: hd-
+|
+*/
+.hd-Header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+
+  height: var(--Header_StripHeight);
+  padding-top: var(--HeaderFromTop);
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: var(--HeaderFromTop);
+    right: 0;
+    left: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: var(--Header_StripHeight);
+
+    background-color: var(--Color_Grey);
+  }
+}
+
+.hd-Header_Inner {
+  @include Grid_Container();
+
+  position: relative;
+  z-index: 2;
+
+  align-items: center;
+
+  display: flex;
+  height: var(--Header_StripHeight);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Header - Logo
+|--------------------------------------------------------------------------
+|
+*/
+.hd-Logo {
+  position: relative;
+
+  display: block;
+  width: width('logo.png');
+  height: 70px;
+
+  background-image: resolve('logo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: @width 40px;
+
+  &::before,
+  &::after {
+    content: '';
+
+    position: absolute;
+    z-index: -1;
+
+    display: block;
+    width: 9999px;
+
+    transform: skew(-30deg);
+  }
+
+  &::before {
+    content: '';
+
+    top: -var(--HeaderFromTop);
+    right: -45px;
+
+    height: var(--Header_Height);
+
+    background-color: var(--Color_Yellow-dark);
+  }
+
+  &::after {
+    content: '';
+
+    top: 0;
+    right: -39px;
+
+    height: var(--Header_StripHeight);
+
+    background-color: var(--Color_Yellow);
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Header - Navigation
+|--------------------------------------------------------------------------
+|
+*/
+.hd-Nav {
+  margin-right: -30px;
+
+  display: flex;
+  margin-left: auto;
+}
+
+.hd-Nav_Link {
+  margin-right: 20px;
+  margin-left: @margin-right;
+  padding-right: 10px;
+  padding-left: @padding-right;
+
+  font-family: var(--Font_Family-oswald);
+  font-size: 15px;
+  line-height: 22px;
+  text-transform: uppercase;
+
+  color: #fff;
+}
+

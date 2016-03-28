@@ -1,53 +1,16 @@
-<header class="hd-Outer">
-  <div class="hd-TopStrip">
-    <div class="hd-TopStrip_Inner">
-      <div class="hd-TopStrip_Items">
-        <a class="hd-Logo" href="/">
-          <img class="hd-Logo_Img" alt="" src="http://placehold.it/200x40">
-        </a>
+<div class="hd-Header">
+  <div class="hd-Header_Inner">
+    <a class="hd-Logo" href="/"></a>
 
-        <div class="hd-GlobalSearch">
-          <global-search></global-search>
-        </div>
-
-        <div class="hd-User">
-          <div class="hd-User_ImageContainer">
-            <img class="hd-User_Image" alt="" src="http://futhead.cursecdn.com/static/img/16/clubs/11.png">
-          </div>
-          <p class="hd-User_Username">{{ request.user }}</p>
-        </div>
-      </div>
-    </div>
+    <nav class="hd-Nav">
+      <a class="hd-Nav_Link" href="#">Home</a>
+      <a class="hd-Nav_Link" href="#">About</a>
+      <a class="hd-Nav_Link" href="#">Players</a>
+      <a class="hd-Nav_Link" href="#">Match</a>
+      <a class="hd-Nav_Link" href="#">Results</a>
+      <a class="hd-Nav_Link" href="#">Gallery</a>
+      <a class="hd-Nav_Link" href="#">News</a>
+      <a class="hd-Nav_Link" href="#">Contact</a>
+    </nav>
   </div>
-
-  <div class="hd-BottomStrip">
-    <div class="hd-BottomStrip_Inner">
-      <div class="hd-BottomStrip_Items">
-        <a class="hd-BottomStrip_Item" href="{{ url('builder:builder') }}">
-          <span class="hd-BottomStrip_ItemIcon hd-BottomStrip_ItemIcon-builder"></span>
-          <span class="hd-BottomStrip_ItemText">Builder</span>
-        </a>
-
-        <a class="hd-BottomStrip_Item" href="{{ url('players:players') }}">
-          <span class="hd-BottomStrip_ItemIcon hd-BottomStrip_ItemIcon-players"></span>
-          <span class="hd-BottomStrip_ItemText">Players</span>
-        </a>
-
-        <a class="hd-BottomStrip_Item" href="{{ url('clubs:clubs') }}">
-          <span class="hd-BottomStrip_ItemIcon hd-BottomStrip_ItemIcon-clubs"></span>
-          <span class="hd-BottomStrip_ItemText">Clubs</span>
-        </a>
-
-        <a class="hd-BottomStrip_Item" href="{{ url('leagues:leagues') }}">
-          <span class="hd-BottomStrip_ItemIcon hd-BottomStrip_ItemIcon-leagues"></span>
-          <span class="hd-BottomStrip_ItemText">Leagues</span>
-        </a>
-
-        <a class="hd-BottomStrip_Item" href="{{ url('nations:nations') }}">
-          <span class="hd-BottomStrip_ItemIcon hd-BottomStrip_ItemIcon-nations"></span>
-          <span class="hd-BottomStrip_ItemText">Nations</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</header>
+</div>

@@ -1,26 +1,8 @@
-{% macro page_strip(title, object) %}
+{% macro page_strip(title) %}
   <div class="pg-Strip">
     <div class="pg-Strip_Inner">
       <div class="pg-Strip_Content">
         <h1 class="pg-Strip_Title">{{ title }}</h1>
-
-        {% if object %}
-          <div class="pg-Strip_ImageContainer pg-Strip_ImageContainer-player">
-            <img class="pg-Strip_Image" alt="" src="{{ object.image }}">
-          </div>
-
-          <div class="pg-Strip_ImageContainer pg-Strip_ImageContainer-club">
-            <img class="pg-Strip_Image" alt="" src="{{ object.club.image_dark_md }}">
-          </div>
-
-          <div class="pg-Strip_ImageContainer pg-Strip_ImageContainer-league">
-            <img class="pg-Strip_Image" alt="" src="http://futhead.cursecdn.com/static/img/16/leagues_large/53.png">
-          </div>
-
-          <div class="pg-Strip_ImageContainer pg-Strip_ImageContainer-nation">
-            <img class="pg-Strip_Image" alt="" src="{{ object.nation.image_md }}">
-          </div>
-        {% endif %}
       </div>
     </div>
   </div>
