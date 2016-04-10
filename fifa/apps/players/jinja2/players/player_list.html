@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% import 'base/macros/page.html' as page %}
+{% import 'players/macros/filters.html' as filters %}
 
 {% block content_above %}
   {% set urls = [
@@ -18,6 +19,7 @@
   {{ page.strip('Players') }}
   {{ page.breadcrumb(urls) }}
   {{ page.page_info() }}
+  {{ filters.strip() }}
 {% endblock %}
 
 {% block main %}
