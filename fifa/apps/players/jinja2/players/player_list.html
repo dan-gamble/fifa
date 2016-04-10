@@ -121,6 +121,7 @@
       - <a href="{{ url('clubs:club', kwargs={'slug': player.club.slug}) }}">{{ player.club }}</a>
       - <a href="{{ url('leagues:league', kwargs={'slug': player.league.slug}) }}">{{ player.league }}</a>
       - <a href="{{ url('nations:nation', kwargs={'slug': player.nation.slug}) }}">{{ player.nation }}</a>
+      - {{ player.color }}
     </div>
   {% endfor %}
 

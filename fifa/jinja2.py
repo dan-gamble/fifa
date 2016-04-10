@@ -17,7 +17,7 @@ def environment(**options):
     })
 
     env.filters.update({
-        'color_string': color_string
+        'color_string': color_string,
     })
 
     return env

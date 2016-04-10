@@ -165,6 +165,22 @@ class Player(EaAsset, TimeStampedModel, models.Model):
 
         return url
 
+    def color_css_class(self):
+        components = self.color.split('_')
+
+        return components[0].lower() + ''.join(x.title() for x in components[1:])
+
+    def card_stats(self):
+        # Use a tuple instead of a dict because we need it in this order
+        return (
+            ('DIV' if self.is_gk else 'PAC', self.card_att_1),
+            ('REF' if self.is_gk else 'DRI', self.card_att_2),
+            ('HAN' if self.is_gk else 'SHO', self.card_att_3),
+            ('SPD' if self.is_gk else 'DEF', self.card_att_4),
+            ('KIC' if self.is_gk else 'PAS', self.card_att_5),
+            ('POS' if self.is_gk else 'PHY', self.card_att_6),
+        )
+
     def pace_stats(self):
         return {
             'Acceleration': self.acceleration,

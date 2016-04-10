@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% import 'base/macros/page.html' as page %}
 {% import 'players/macros/players.html' as playerMacros %}
+{% import 'players/macros/cards.html' as card %}
 
 {% block content_above %}
   {% set urls = [
@@ -29,7 +30,7 @@
   <div class="plyr-Strip">
     <div class="plyr-Strip_Inner">
       <div class="plyr-Card_Surround">
-        <img alt="" src="http://placehold.it/200x300">
+        {{ card.card(player) }}
       </div>
 
       <div class="plyr-Strip_Content">

@@ -34,12 +34,9 @@
 |
 */
 @mixin Grid_Row($flex: true) {
+  display: flex;
   margin-right: -var(--Grid_Gutter);
   margin-left: @margin-right;
-
-  @if $flex {
-    display: flex;
-  }
 }
 
 /*
@@ -54,7 +51,7 @@
   margin-right: var(--Grid_Gutter);
   margin-left: @margin-right;
 
-  @if $count {
+  @if $count AND $total {
     width: calc(percentage($count, $total) - calc(var(--Grid_Gutter) * 2));
   }
 }

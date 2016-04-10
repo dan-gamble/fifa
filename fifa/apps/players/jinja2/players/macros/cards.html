@@ -1,0 +1,27 @@
+{% macro card(player) %}
+  <div class="plyr-Card plyr-Card-{{ player.color_css_class() }}">
+    <header class="plyr-Card_Header">
+      <div class="plyr-Card_Meta">
+        <div class="plyr-Card_Rating">{{ player.overall_rating }}</div>
+        <div class="plyr-Card_Position">{{ player.position }}</div>
+        <img class="plyr-Card_Club" src="https://fifa15.content.easports.com/fifa/fltOnlineAssets/B488919F-23B5-497F-9FC0-CACFB38863D0/2016/fut/items/images/clubbadges/html5/normal/45x45/l112658.png">
+        <img class="plyr-Card_Nation" src="{{ player.nation.image_lg }}">
+      </div>
+
+      <div class="plyr-Card_ImageSurround">
+        <img alt="" src="{{ player.image }}">
+      </div>
+    </header>
+
+    <div class="plyr-Card_Name">{{ player.common_name }}</div>
+
+    <div class="plyr-Card_Stats">
+      {% for label, value in player.card_stats() %}
+        <div class="plyr-Card_Stat">
+          <div class="plyr-Card_StatValue">{{ value }}</div>
+          <div class="plyr-Card_StatLabel">{{ label }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endmacro %}

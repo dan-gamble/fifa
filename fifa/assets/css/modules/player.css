@@ -83,13 +83,13 @@
 }
 
 .plyr-Strip_ContentBottom {
-  justify-content: space-around;
+  @include Grid_Row();
 
-  display: flex;
+  justify-content: space-between;
 }
 
 .plyr-Strip_ContentItems {
-  width: 270px;
+  @include Grid_Column(1, 2);
 
   background-color: #fff;
   border: 1px solid #e7e7e7;

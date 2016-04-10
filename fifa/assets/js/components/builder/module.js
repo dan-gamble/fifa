@@ -177,8 +177,6 @@ const mutations = {
           total += ((1 / 3)) * 3
         }
       }
-
-      console.log(total, totalLinks)
     }
   },
 
