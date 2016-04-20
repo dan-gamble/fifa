@@ -1,8 +1,9 @@
 :root {
-  --Color_Dark: #363533;
+  --Color_Dark: #2b2d42;
   --Color_Grey: #858585;
   --Color_Yellow: #ffc722;
   --Color_Yellow-dark: #f2bd20;
+  --Color_Red: #ef233c;
 
   --Color_Poor: #bf3030;
   --Color_Fair: #d47c00;
@@ -10,8 +11,11 @@
   --Color_Good: #90c039;
   --Color_Great: #54a71b;
 
-  --Font_Family-body: 'Work Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
-  --Font_Family-oswald: 'Oswald', 'Helvetica Neue', 'Helvetica', sans-serif;
+  --Font_Family-montserrat: 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
+  --Font_Family-raleway: 'Raleway', 'Helvetica Neue', 'Helvetica', sans-serif;
+  --Font_Family-roboto: 'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif;
+  --Font_Family-robotoSlab: 'Roboto Slab', 'Helvetica Neue', 'Helvetica', sans-serif;
+  --Font_Family-body: var(--Font_Family-raleway);
 
   --Font_Size-large: 38px;
 

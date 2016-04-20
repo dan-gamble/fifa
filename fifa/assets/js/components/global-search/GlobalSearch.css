@@ -6,11 +6,11 @@
 |
 */
 .grow-transition {
-  width: 100%;
+  width: 200px;
 
   opacity: 1;
 
-  transition: width 0.3s ease, opacity 0.2s ease;
+  transition: width 0.3s 0.1s ease, opacity 0.1s ease;
 }
 
 .grow-enter,
@@ -28,7 +28,7 @@
 
   display: flex;
   width: 100%;
-  height: 30px;
+  height: 35px;
 }
 
 .gbs-Icon {
@@ -49,7 +49,7 @@
   right: 0;
   z-index: 1;
 
-  height: 30px;
+  height: 35px;
   padding: 10px;
 
   font-size: 14px;

@@ -4,6 +4,10 @@
 |--------------------------------------------------------------------------
 |
 */
+.lyt-Site {
+  overflow: hidden;
+}
+
 .lyt-Content {
   max-width: var(--Grid_Constrained);
   margin-right: auto;

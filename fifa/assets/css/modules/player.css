@@ -68,7 +68,7 @@
   height: @width;
   margin-right: 30px;
 
-  font-family: var(--Font_Family-oswald);
+  font-family: var(--Font_Family-montserrat);
   font-weight: 400;
 
   background-color: var(--Color_Yellow);
@@ -77,7 +77,7 @@
 .plyr-Strip_Name {
   @include Font_Sizing(large);
 
-  font-family: var(--Font_Family-oswald);
+  font-family: var(--Font_Family-montserrat);
   font-weight: 400;
   text-transform: uppercase;
 }
@@ -102,7 +102,7 @@
   height: 40px;
   padding: 0 20px;
 
-  font-family: var(--Font_Family-oswald);
+  font-family: var(--Font_Family-montserrat);
   font-size: 16px;
   line-height: 1.3;
   text-transform: uppercase;
@@ -170,7 +170,7 @@
 }
 
 .plyr-Stats_TitleRating {
-  font-family: var(--Font_Family-oswald);
+  font-family: var(--Font_Family-montserrat);
   font-size: 30px;
   font-weight: 600;
 
@@ -215,7 +215,7 @@
 }
 
 .plyr-Stats_ItemRating {
-  font-family: var(--Font_Family-oswald);
+  font-family: var(--Font_Family-montserrat);
   font-size: 18px;
   font-weight: 500;
 
