@@ -1,5 +1,5 @@
 {% macro card(player) %}
-  <div class="plyr-Card plyr-Card-{{ player.color_css_class() }}">
+  <a class="plyr-Card plyr-Card-{{ player.color_css_class() }}" href="{{ player.get_absolute_url() }}">
     <header class="plyr-Card_Header">
       <div class="plyr-Card_Meta">
         <div class="plyr-Card_Rating">{{ player.overall_rating }}</div>
@@ -23,5 +23,5 @@
         </div>
       {% endfor %}
     </div>
-  </div>
+  </a>
 {% endmacro %}

@@ -1,0 +1,68 @@
+/*
+|--------------------------------------------------------------------------
+| Aside
+|--------------------------------------------------------------------------
+| @namespace: asi-
+|
+*/
+
+/*
+|--------------------------------------------------------------------------
+| Aside - Block
+|--------------------------------------------------------------------------
+|
+*/
+.asi-Block {
+  background-color: #edf2f4;
+  border: 1px solid #dde0e7;
+}
+
+.asi-Block_Header {
+  margin-top: -1px;
+  margin-right: -1px;
+  margin-left: -1px;
+  padding: 14px 30px;
+
+  font-family: var(--Font_Family-montserrat);
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 24px;
+
+  background-color: var(--Color_Dark);
+  color: #fff;
+}
+
+.asi-Block_Content {
+  padding: 25px 30px;
+}
+
+.asi-Block_Items {
+  font-family: var(--Font_Family-montserrat);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.asi-Block_Item {
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.asi-Block_ItemKey {
+  margin-right: 5px;
+
+  text-transform: uppercase;
+
+  color: var(--Color_Dark);
+
+  &::after {
+    content: ':';
+  }
+}
+
+.asi-Block_ItemValue {
+  color: #8d99ae;
+}

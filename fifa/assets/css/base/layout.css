@@ -5,12 +5,31 @@
 |
 */
 .lyt-Site {
+  max-width: var(--Grid_Constrained);
+  margin-right: auto;
+  margin-left: auto;
+
+  border-right: 1px solid #edf2f4;
+  border-left: @border-right;
   overflow: hidden;
 }
 
 .lyt-Content {
-  max-width: var(--Grid_Constrained);
-  margin-right: auto;
-  margin-left: auto;
+  @include Grid_Container();
+
+  display: flex;
   padding-top: 70px;
+
+  &.lyt-Content-single {
+    display: block;
+  }
+}
+
+.lyt-Main {
+  width: percentage(17, 24);
+}
+
+.lyt-Aside {
+  width: percentage(6, 24);
+  margin-left: percentage(1, 24);
 }

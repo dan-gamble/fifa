@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% import 'base/macros/page.html' as page %}
 {% import 'players/macros/filters.html' as filters %}
+{% import 'players/macros/players.html' as players %}
 
 {% block content_above %}
   {% set urls = [
@@ -16,8 +17,8 @@
     }
   ] %}
 
-  {{ page.strip('Players') }}
   {{ page.breadcrumb(urls) }}
+  {{ page.strip('Players') }}
   {{ page.page_info() }}
   {{ filters.strip() }}
 {% endblock %}
@@ -116,16 +117,7 @@
     </div>
   </div>
 
-  {% for player in object_list %}
-    <div class="player">
-      {{ player.get_absolute_url() }}
-      <a href="{{ url('players:player', kwargs={'slug': player.slug}) }}">{{ player }}</a>
-      - <a href="{{ url('clubs:club', kwargs={'slug': player.club.slug}) }}">{{ player.club }}</a>
-      - <a href="{{ url('leagues:league', kwargs={'slug': player.league.slug}) }}">{{ player.league }}</a>
-      - <a href="{{ url('nations:nation', kwargs={'slug': player.nation.slug}) }}">{{ player.nation }}</a>
-      - {{ player.color }}
-    </div>
-  {% endfor %}
+  {{ players.player_list(object_list) }}
 
   {% if is_paginated %}
     <div class="pagination-centered">

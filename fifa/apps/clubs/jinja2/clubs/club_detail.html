@@ -1,6 +1,89 @@
 {% extends 'base.html' %}
+{% import 'base/macros/page.html' as page %}
+{% import 'players/macros/players.html' as players %}
 
-{% block main %}
-  {{ object.name }}
-  {{ object.slug }}
+{% block content_above %}
+  {{ page.breadcrumb(breadcrumb_urls()) }}
+
+  {% call page.strip() %}
+    <h1 class="pg-Strip_Title">{{ object.detail_title() }}</h1>
+    <p class="pg-Strip_Text">Vivamus id malesuada velit. Mauris gravida at neque nec interdum. Vestibulum ultricies nisl at quam cursus consectetur. In et nibh at sem porttitor malesuada nec in lorem. Nulla auctor, lorem in imperdiet lacinia, mauris libero tincidunt erat, eget tincidunt elit sapien eget massa.</p>
+  {% endcall %}
+
+  {% call page.bar() %}
+    <div class="pg-Bar_Left">
+      <h3 class="pg-Bar_Title">{{ object.league.name }}</h3>
+      <div class="pg-Bar_Selector">{{ object.name }}</div>
+    </div>
+
+    <div class="pg-Bar_Right">
+      <p class="pg-FutmozRating_Key">FUT<span class="hlt-Red">moz</span> rating</p>
+      <div class="pg-FutmozRating_Rating">
+        <div class="pg-FutmozRating_Up"></div>
+        <p class="pg-FutmozRating_Value">55</p>
+        <div class="pg-FutmozRating_Down"></div>
+      </div>
+    </div>
+  {% endcall %}
+{% endblock %}
+
+{% block aside %}
+  <div class="asi-Block">
+    <header class="asi-Block_Header">Information</header>
+
+    <section class="asi-Block_Content">
+      <div class="asi-Block_Items">
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Players</span>
+          <span class="asi-Block_ItemValue">61</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Average Rating</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Average price</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Total price</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Bronze</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Silver</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Gold</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Informs</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Special</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}
+
+{% block content_below %}
+  <div class="pg-Section">
+    {{ players.player_list(object.players()) }}
+  </div>
 {% endblock %}

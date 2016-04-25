@@ -1,5 +1,5 @@
 Markdown>=2.4.1
-django-model-utils>=2.2
+django-model_name-utils>=2.2
 bcrypt>=1.0.2
 psycopg2>=2.5.3
 Pillow>=2.8.1

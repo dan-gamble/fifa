@@ -49,6 +49,7 @@
 .plyr-Card {
   position: relative;
 
+  display: block;
   width: 202px;
   height: 316px;
   padding: 35px 30px 29px;

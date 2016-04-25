@@ -2,9 +2,6 @@ from django.contrib.postgres.fields import JSONField
 from django.core import urlresolvers
 from django.db import models
 from fifa.apps.models import EaAsset, TimeStampedModel
-from ..clubs.models import Club
-from ..leagues.models import League
-from ..nations.models import Nation
 
 PLAYER_POSITION_CHOICES = (
     ('GK', 'GK'),
@@ -41,7 +38,16 @@ PLAYER_POSITION_LINE_CHOICES = (
 )
 
 
+class PlayerRelatedManager(models.Manager):
+    def get_queryset(self):
+        return super(PlayerRelatedManager, self).get_queryset().select_related(
+            'club', 'league', 'nation'
+        )
+
+
 class Player(EaAsset, TimeStampedModel, models.Model):
+    objects = PlayerRelatedManager()
+
     cached_url = models.CharField(max_length=1000, null=True, blank=True)
 
     first_name = models.CharField(max_length=100)
@@ -49,9 +55,9 @@ class Player(EaAsset, TimeStampedModel, models.Model):
     common_name = models.CharField(max_length=100)
     slug = models.SlugField(blank=True, null=True)
 
-    club = models.ForeignKey(Club, blank=True, null=True)
-    league = models.ForeignKey(League, blank=True, null=True)
-    nation = models.ForeignKey(Nation, blank=True, null=True)
+    club = models.ForeignKey('clubs.Club', blank=True, null=True)
+    league = models.ForeignKey('leagues.League', blank=True, null=True)
+    nation = models.ForeignKey('nations.Nation', blank=True, null=True)
 
     image = models.CharField(max_length=255, blank=True, null=True)
     image_sm = models.CharField(max_length=255, blank=True, null=True)
@@ -129,8 +135,8 @@ class Player(EaAsset, TimeStampedModel, models.Model):
     card_att_5 = models.PositiveIntegerField(blank=True, null=True)
     card_att_6 = models.PositiveIntegerField(blank=True, null=True)
 
-    quality = models.CharField(max_length=100, blank=True, null=True)
-    color = models.CharField(max_length=100, blank=True, null=True)
+    quality = models.CharField(max_length=100, blank=True, null=True, db_index=True)
+    color = models.CharField(max_length=100, blank=True, null=True, db_index=True)
 
     is_gk = models.NullBooleanField(default=False)
     is_special_type = models.NullBooleanField(default=False)

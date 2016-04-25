@@ -1,5 +1,7 @@
 from django.views.generic import ListView, DetailView
 from rest_framework import viewsets
+
+from fifa.apps.players.models import Player
 from .models import Club
 from .serializers import ClubSerializer
 
@@ -20,3 +22,12 @@ class ClubList(ListView):
 
 class ClubDetail(DetailView):
     model = Club
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['players'] = Player.objects.filter(
+            club=self.get_object()
+        )
+
+        return context

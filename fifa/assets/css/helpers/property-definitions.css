@@ -17,7 +17,25 @@
   --Font_Family-robotoSlab: 'Roboto Slab', 'Helvetica Neue', 'Helvetica', sans-serif;
   --Font_Family-body: var(--Font_Family-raleway);
 
-  --Font_Size-large: 38px;
+  /**
+  * Font sizing
+  */
+  --VerticalRhythmBaseline: 12px;
+
+  --Font_Size-16: 16px;
+  --Line_Height-16: calc(var(--VerticalRhythmBaseline) * 2);
+
+  --Font_Size-18: 18px;
+  --Line_Height-18: calc(var(--VerticalRhythmBaseline) * 2);
+
+  --Font_Size-20: 20px;
+  --Line_Height-20: calc(var(--VerticalRhythmBaseline) * 2);
+
+  --Font_Size-24: 24px;
+  --Line_Height-24: calc(var(--VerticalRhythmBaseline) * 3);
+
+  --Font_Size-32: 32px;
+  --Line_Height-32: calc(var(--VerticalRhythmBaseline) * 3);
 
   --Grid_Gutter: 20px;
   --Grid_Container: 1170px;

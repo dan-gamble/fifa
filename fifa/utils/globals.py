@@ -2,23 +2,39 @@ import urllib
 
 from django.apps import apps
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 
+from jinja2 import contextfunction
 
-def breadcrumb():
-    all_apps = settings.INSTALLED_APPS
-    app_list = []
-    app_models = []
 
-    for app in all_apps:
-        if 'fifa.' in app:
-            app_list.append(app.replace('fifa.apps.', ''))
+@contextfunction
+def breadcrumb(context):
+    current_obj = context.parent.get('object', None)
+    url_list = [
+        {
+            'title': 'Home',
+            'url': '/',
+            'active': False
+        }
+    ]
 
-    for app in app_list:
-        app_models = apps.get_app_config(app).get_models()
+    if current_obj:
+        content_type = ContentType.objects.get_for_model(current_obj)
+        app_label = content_type.app_label
 
-        for model in app_models:
-            print(model)
+        url_list.append({
+            'title': app_label.capitalize(),
+            'url': reverse('{}:{}'.format(app_label, app_label)),
+            'active': False
+        })
+        url_list.append({
+            'title': current_obj.name,
+            'url': current_obj.get_absolute_url(),
+            'active': True
+        })
+
+    return url_list
 
 
 def build_url(*args, **kwargs):

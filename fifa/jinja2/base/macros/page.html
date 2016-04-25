@@ -1,13 +1,3 @@
-{% macro strip(title) %}
-  <div class="pg-Strip">
-    <div class="pg-Strip_Inner">
-      <div class="pg-Strip_Content">
-        <h1 class="pg-Strip_Title">{{ title }}</h1>
-      </div>
-    </div>
-  </div>
-{% endmacro %}
-
 {% macro breadcrumb(urls) %}
   <div class="pg-Breadcrumb">
     <div class="pg-Breadcrumb_Inner">
@@ -22,6 +12,24 @@
           </div>
         {% endfor %}
       </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro strip() %}
+  <div class="pg-Strip">
+    <div class="pg-Strip_Inner">
+      <div class="pg-Strip_Content">
+        {{ caller() }}
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro bar() %}
+  <div class="pg-Bar">
+    <div class="pg-Bar_Inner">
+      {{ caller() }}
     </div>
   </div>
 {% endmacro %}

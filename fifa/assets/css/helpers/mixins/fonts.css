@@ -14,22 +14,7 @@
 |
 | @size: The font size variable from the maps & lineheights
 */
-@mixin Font_Sizing($size) {
+@mixin Font($size) {
   font-size: var(--Font_Size-$(size));
-  line-height: 1.3;
-}
-
-/*
-|--------------------------------------------------------------------------
-| Font styles
-|--------------------------------------------------------------------------
-| Returns the font family & weight relative to the size of the font being
-| used
-|
-*/
-@mixin Font_Styles($size) {
-  font-family: $Font_Family-$(size);
-  font-weight: $Font_Weight-$(size);
-
-  color: $Font_Color-$(size);
+  line-height: var(--Line_Height-$(size));
 }
