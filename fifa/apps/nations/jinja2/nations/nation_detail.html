@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
+{% import 'base/macros/page.html' as page %}
 
-{% block main %}
-  {{ object.name }}
-  {{ object.slug }}
+{% block content_above %}
+  {{ page.breadcrumb(breadcrumb_urls()) }}
+
+  {% call page.strip() %}
+    <h1 class="pg-Strip_Title">{{ object.detail_title() }}</h1>
+    <p class="pg-Strip_Text">Vivamus id malesuada velit. Mauris gravida at neque nec interdum. Vestibulum ultricies nisl at quam cursus consectetur. In et nibh at sem porttitor malesuada nec in lorem. Nulla auctor, lorem in imperdiet lacinia, mauris libero tincidunt erat, eget tincidunt elit sapien eget massa.</p>
+  {% endcall %}
 {% endblock %}
