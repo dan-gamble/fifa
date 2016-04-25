@@ -22,6 +22,7 @@ def breadcrumb(context):
     if current_obj:
         content_type = ContentType.objects.get_for_model(current_obj)
         app_label = content_type.app_label
+        title = current_obj.common_name if content_type.model == 'player' else current_obj.name
 
         url_list.append({
             'title': app_label.capitalize(),
@@ -29,7 +30,7 @@ def breadcrumb(context):
             'active': False
         })
         url_list.append({
-            'title': current_obj.name,
+            'title': title,
             'url': current_obj.get_absolute_url(),
             'active': True
         })

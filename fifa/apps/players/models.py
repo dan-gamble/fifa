@@ -1,6 +1,8 @@
 from django.contrib.postgres.fields import JSONField
 from django.core import urlresolvers
 from django.db import models
+from django.template.defaultfilters import safe
+
 from fifa.apps.models import EaAsset, TimeStampedModel
 
 PLAYER_POSITION_CHOICES = (
@@ -170,6 +172,17 @@ class Player(EaAsset, TimeStampedModel, models.Model):
             self.save()
 
         return url
+
+    def detail_title(self):
+        split = '{} {}'.format(self.first_name, self.last_name).split(' ')
+        brackets = self.common_name if '{} {}'.format(self.first_name, self.last_name) != self.common_name else ''
+        last_item = split.pop()
+        split.append('<span class="hlt-Red">{}</span>'.format(last_item))
+
+        if brackets:
+            split .append('({})'.format(brackets))
+
+        return safe(' '.join(split))
 
     def color_css_class(self):
         components = self.color.split('_')
