@@ -8,7 +8,7 @@ from ..nations.models import Nation
 
 class League(EaAsset, TimeStampedModel, models.Model):
     cached_url = models.CharField(max_length=1000, null=True, blank=True)
-    
+
     name = models.CharField(max_length=100)
     name_abbr = models.CharField(max_length=100)
     slug = models.SlugField(blank=True, null=True)
@@ -33,6 +33,9 @@ class League(EaAsset, TimeStampedModel, models.Model):
             self.save()
 
         return url
+
+    def main_related_object(self):
+        return self.nation
 
     def detail_title(self):
         split = self.name.split(' ')

@@ -1,7 +1,7 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from rest_framework import viewsets
 
-from fifa.apps.players.models import Player
+from fifa.apps.views import EaDetailView
 from .models import Club
 from .serializers import ClubSerializer
 
@@ -20,14 +20,5 @@ class ClubList(ListView):
         return super(ClubList, self).get_queryset().select_related('league')
 
 
-class ClubDetail(DetailView):
+class ClubDetail(EaDetailView):
     model = Club
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context['players'] = Player.objects.filter(
-            club=self.get_object()
-        )
-
-        return context

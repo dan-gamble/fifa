@@ -78,7 +78,11 @@ hr {
   margin-bottom: @margin-top;
 
   border: 0;
-  border-top: 1px solid #e8e8e8;
+  border-top: 2px solid #dde0e7;
+
+  .pg-Title + & {
+    margin-top: 15px;
+  }
 }
 
 /*

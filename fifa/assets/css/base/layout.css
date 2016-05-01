@@ -25,10 +25,6 @@
   }
 }
 
-.lyt-Main {
-  width: percentage(17, 24);
-}
-
 .lyt-Aside {
   width: percentage(6, 24);
   margin-left: percentage(1, 24);

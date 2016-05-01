@@ -1,5 +1,7 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from rest_framework import viewsets, filters
+
+from fifa.apps.views import EaDetailView
 from .models import Nation
 from .serializers import NationSerializer
 
@@ -17,5 +19,5 @@ class NationList(ListView):
     paginate_by = 25
 
 
-class NationDetail(DetailView):
+class NationDetail(EaDetailView):
     model = Nation

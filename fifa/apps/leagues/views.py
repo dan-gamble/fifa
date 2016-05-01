@@ -1,5 +1,7 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from rest_framework import viewsets
+
+from fifa.apps.views import EaDetailView
 from .models import League
 from .serializers import LeagueSerializer
 
@@ -18,5 +20,5 @@ class LeagueList(ListView):
         return super(LeagueList, self).get_queryset().select_related('nation')
 
 
-class LeagueDetail(DetailView):
+class LeagueDetail(EaDetailView):
     model = League

@@ -11,6 +11,35 @@
   padding-top: 70px;
 }
 
+.pg-Title {
+  &.pg-Title-large {
+    @include Font(32);
+
+    font-family: var(--Font_Family-robotoSlab);
+    text-transform: uppercase;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Page - Columns
+|--------------------------------------------------------------------------
+|
+*/
+.pg-Columns {
+  @include Grid_Row();
+
+  align-items: center;
+}
+
+.pg-Column {
+  @include Grid_Column();
+
+  &:not(:first-child) {
+    flex: 1;
+  }
+}
+
 /*
 |--------------------------------------------------------------------------
 | Page - Strip

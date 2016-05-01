@@ -58,7 +58,7 @@
 }
 
 .plyr-Strip_Rating {
-  @include Font_Sizing(large);
+  @include Font(large);
 
   align-items: center;
   justify-content: center;
@@ -75,7 +75,7 @@
 }
 
 .plyr-Strip_Name {
-  @include Font_Sizing(large);
+  @include Font(large);
 
   font-family: var(--Font_Family-montserrat);
   font-weight: 400;

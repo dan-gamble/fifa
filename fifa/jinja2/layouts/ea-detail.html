@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% import 'base/macros/page.html' as page %}
+{% import 'players/macros/players.html' as players %}
+
+{% block content_above %}
+  {{ page.breadcrumb(breadcrumb_urls()) }}
+
+  {% call page.strip() %}
+    <h1 class="pg-Strip_Title">{{ object.detail_title() }}</h1>
+    <p class="pg-Strip_Text">Vivamus id malesuada velit. Mauris gravida at neque nec interdum. Vestibulum ultricies nisl at quam cursus consectetur. In et nibh at sem porttitor malesuada nec in lorem. Nulla auctor, lorem in imperdiet lacinia, mauris libero tincidunt erat, eget tincidunt elit sapien eget massa.</p>
+  {% endcall %}
+
+  {% block page_bar %}
+    {% call page.bar() %}
+      {% if object.main_related_object %}
+        <div class="pg-Bar_Left">
+          <h3 class="pg-Bar_Title">{{ object.main_related_object().name }}</h3>
+          <div class="pg-Bar_Selector">{{ object.name }}</div>
+        </div>
+      {% else %}
+        <div class="pg-Bar_Left">
+          <h3 class="pg-Bar_Title">TODO</h3>
+          <div class="pg-Bar_Selector">{{ object.name }}</div>
+        </div>
+      {% endif %}
+
+      <div class="pg-Bar_Right">
+        <p class="pg-FutmozRating_Key">FUT<span class="hlt-Red">moz</span> rating</p>
+        <div class="pg-FutmozRating_Rating">
+          <div class="pg-FutmozRating_Up"></div>
+          <p class="pg-FutmozRating_Value">55</p>
+          <div class="pg-FutmozRating_Down"></div>
+        </div>
+      </div>
+    {% endcall %}
+  {% endblock %}
+{% endblock %}
+
+{% block main %}
+  <h2 class="pg-Title pg-Title-large">Details</h2>
+
+  <hr>
+
+  <div class="pg-Columns">
+    <div class="pg-Column">
+      <img alt="" src="//static.wefut.com/assets/images/fut16/clubbadges/{{ object.ea_id }}.png" height="179">
+      <img alt="" src="//static.wefut.com/assets/images/fut16/kits/{{ object.ea_id }}_home.png">
+      <img alt="" src="//static.wefut.com/assets/images/fut16/kits/{{ object.ea_id }}_away.png">
+    </div>
+
+    <div class="pg-Column">
+      <div class="asi-Block_Items">
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">FUTmoz Rating</span>
+          <span class="asi-Block_ItemValue">83rd</span>
+        </div>
+
+        {% if object.main_related_object %}
+          <div class="asi-Block_Item">
+            <span class="asi-Block_ItemKey">League</span>
+
+            <span class="asi-Block_ItemValue">
+              <a href="{{ object.main_related_object().get_absolute_url() }}">{{ object.main_related_object() }}</a>
+            </span>
+          </div>
+        {% endif %}
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Average Rating</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Total Rating</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Average price</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Total price</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pg-Column">
+      <div class="asi-Block_Items">
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Players</span>
+          <span class="asi-Block_ItemValue">61</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Bronze</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Silver</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Gold</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Informs</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+
+        <div class="asi-Block_Item">
+          <span class="asi-Block_ItemKey">Special</span>
+          <span class="asi-Block_ItemValue">83</span>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content_class %}lyt-Content-single{% endblock %}
+
+{% block content_below %}
+  <div class="pg-Section">
+    <h2 class="pg-Title pg-Title-large">Players</h2>
+    <hr>
+
+    {{ players.player_list(object.players()) }}
+  </div>
+{% endblock %}

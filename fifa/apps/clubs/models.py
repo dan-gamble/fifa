@@ -43,6 +43,9 @@ class Club(EaAsset, TimeStampedModel, models.Model):
 
         return url
 
+    def main_related_object(self):
+        return self.league
+
     def detail_title(self):
         split = self.name.split(' ')
         last_item = split.pop()
