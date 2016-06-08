@@ -7,6 +7,8 @@ from ..nations.models import Nation
 
 
 class League(EaAsset, TimeStampedModel, models.Model):
+    objects = models.Manager()
+
     cached_url = models.CharField(max_length=1000, null=True, blank=True)
 
     name = models.CharField(max_length=100)
@@ -34,7 +36,7 @@ class League(EaAsset, TimeStampedModel, models.Model):
 
         return url
 
-    def main_related_object(self):
+    def related_object(self):
         return self.nation
 
     def detail_title(self):

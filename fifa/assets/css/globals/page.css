@@ -28,12 +28,12 @@
 */
 .pg-Columns {
   @include Grid_Row();
-
-  align-items: center;
 }
 
 .pg-Column {
   @include Grid_Column();
+
+  flex: 2;
 
   &:not(:first-child) {
     flex: 1;
@@ -116,32 +116,71 @@
   text-transform: uppercase;
 }
 
+.pg-Bar_TitleAction {
+  color: inherit;
+}
+
+.pg-Bar_SelectorContainer {
+  margin-left: 15px;
+}
+
 .pg-Bar_Selector {
   position: relative;
 
   align-items: center;
 
   display: flex;
-  margin-right: 15px;
-  margin-left: 30px;
+  padding: 14px 35px 14px 15px;
 
   font-family: var(--Font_Family-montserrat);
   font-size: 16px;
+  font-weight: 500;
   line-height: calc(var(--VerticalRhythmBaseline) * 2);
   text-transform: uppercase;
 
-  border-bottom: 1px dashed var(--Color_Red);
   color: var(--Color_Red);
+
+  transition: all 0.16s;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 36px;
+    right: 30px;
+    left: 15px;
+
+    display: block;
+
+    border-top: 1px dashed var(--Color_Red);
+    opacity: 1;
+
+    transition: opacity 0.16s;
+  }
 
   &::after {
     position: absolute;
-    right: -15px;
+    right: 15px;
 
     font-size: 10px;
 
     color: #fafafb;
 
     font-awesome: chevron-down;
+
+    transition: color 0.16s;
+  }
+
+  &[aria-selected='true'] {
+    background-color: #edf2f4;
+
+    &::before {
+      opacity: 0;
+    }
+
+    &::after {
+      color: var(--Color_Grey);
+    }
   }
 }
 

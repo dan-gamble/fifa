@@ -44,6 +44,9 @@ class Nation(EaAsset, TimeStampedModel, models.Model):
 
         return url
 
+    def related_object(self):
+        return None
+
     def detail_title(self):
         split = self.name.split(' ')
         last_item = split.pop()

@@ -12,10 +12,17 @@
 
   {% block page_bar %}
     {% call page.bar() %}
-      {% if object.main_related_object %}
+      {% if object.related_object() %}
         <div class="pg-Bar_Left">
-          <h3 class="pg-Bar_Title">{{ object.main_related_object().name }}</h3>
-          <div class="pg-Bar_Selector">{{ object.name }}</div>
+          <h3 class="pg-Bar_Title">
+            <a class="pg-Bar_TitleAction" href="{{ object.related_object().get_absolute_url() }}">{{ object.related_object().name }}</a>
+          </h3>
+
+          <div class="pg-Bar_SelectorContainer">
+            <a class="pg-Bar_Selector" href="#" aria-selected="false">{{ object.name }}</a>
+
+
+          </div>
         </div>
       {% else %}
         <div class="pg-Bar_Left">
@@ -37,12 +44,16 @@
 {% endblock %}
 
 {% block main %}
+  {% if related_objects %}
+    {{ related_objects }}
+  {% endif %}
+
   <h2 class="pg-Title pg-Title-large">Details</h2>
 
   <hr>
 
   <div class="pg-Columns">
-    <div class="pg-Column">
+    <div class="pg-Column" style="display: flex; justify-content: space-around;">
       <img alt="" src="//static.wefut.com/assets/images/fut16/clubbadges/{{ object.ea_id }}.png" height="179">
       <img alt="" src="//static.wefut.com/assets/images/fut16/kits/{{ object.ea_id }}_home.png">
       <img alt="" src="//static.wefut.com/assets/images/fut16/kits/{{ object.ea_id }}_away.png">
@@ -55,19 +66,19 @@
           <span class="asi-Block_ItemValue">83rd</span>
         </div>
 
-        {% if object.main_related_object %}
+        {% if object.related_object() %}
           <div class="asi-Block_Item">
             <span class="asi-Block_ItemKey">League</span>
 
             <span class="asi-Block_ItemValue">
-              <a href="{{ object.main_related_object().get_absolute_url() }}">{{ object.main_related_object() }}</a>
+              <a href="{{ object.related_object().get_absolute_url() }}">{{ object.related_object() }}</a>
             </span>
           </div>
         {% endif %}
 
         <div class="asi-Block_Item">
           <span class="asi-Block_ItemKey">Average Rating</span>
-          <span class="asi-Block_ItemValue">83</span>
+          <span class="asi-Block_ItemValue">{{ object.average_overall_rating() }}</span>
         </div>
 
         <div class="asi-Block_Item">
@@ -91,32 +102,32 @@
       <div class="asi-Block_Items">
         <div class="asi-Block_Item">
           <span class="asi-Block_ItemKey">Players</span>
-          <span class="asi-Block_ItemValue">61</span>
+          <span class="asi-Block_ItemValue">{{ object.total_players }}</span>
         </div>
 
         <div class="asi-Block_Item">
           <span class="asi-Block_ItemKey">Bronze</span>
-          <span class="asi-Block_ItemValue">83</span>
+          <span class="asi-Block_ItemValue">{{ object.total_bronze }}</span>
         </div>
 
         <div class="asi-Block_Item">
           <span class="asi-Block_ItemKey">Silver</span>
-          <span class="asi-Block_ItemValue">83</span>
+          <span class="asi-Block_ItemValue">{{ object.total_silver }}</span>
         </div>
 
         <div class="asi-Block_Item">
           <span class="asi-Block_ItemKey">Gold</span>
-          <span class="asi-Block_ItemValue">83</span>
+          <span class="asi-Block_ItemValue">{{ object.total_gold }}</span>
         </div>
 
         <div class="asi-Block_Item">
           <span class="asi-Block_ItemKey">Informs</span>
-          <span class="asi-Block_ItemValue">83</span>
+          <span class="asi-Block_ItemValue">{{ object.total_informs }}</span>
         </div>
 
         <div class="asi-Block_Item">
           <span class="asi-Block_ItemKey">Special</span>
-          <span class="asi-Block_ItemValue">83</span>
+          <span class="asi-Block_ItemValue">{{ object.total_special }}</span>
         </div>
       </div>
     </div>

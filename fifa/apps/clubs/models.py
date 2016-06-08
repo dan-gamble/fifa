@@ -43,7 +43,7 @@ class Club(EaAsset, TimeStampedModel, models.Model):
 
         return url
 
-    def main_related_object(self):
+    def related_object(self):
         return self.league
 
     def detail_title(self):

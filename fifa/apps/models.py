@@ -1,9 +1,17 @@
 from django.db import models
+from django.db.models import Avg
 from django.template.defaultfilters import safe
 
 
 class EaAsset(models.Model):
     ea_id = models.PositiveIntegerField()
+
+    total_players = models.PositiveIntegerField(default=0)
+    total_bronze = models.PositiveIntegerField(default=0)
+    total_silver = models.PositiveIntegerField(default=0)
+    total_gold = models.PositiveIntegerField(default=0)
+    total_informs = models.PositiveIntegerField(default=0)
+    total_special = models.PositiveIntegerField(default=0)
 
     class Meta:
         abstract = True
@@ -44,6 +52,9 @@ class EaAsset(models.Model):
 
     def special_players(self):
         return self.players().filter(is_special_type=True)
+
+    def average_overall_rating(self):
+        return format(self.players().aggregate(Avg('overall_rating'))['overall_rating__avg'], '.2f')
 
 
 class TimeStampedModel(models.Model):

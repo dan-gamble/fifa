@@ -58,7 +58,7 @@
 
       query (val) {
         if (val !== '') {
-          this.$http.get('/api/players', { query: this.query }).then((res) => {
+          this.$http.get('/api/players/', { query: this.query }).then((res) => {
             this.results = res.data.results
           })
         }

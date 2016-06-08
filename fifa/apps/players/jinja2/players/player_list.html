@@ -18,7 +18,8 @@
   ] %}
 
   {{ page.breadcrumb(urls) }}
-  {{ page.strip('Players') }}
+  {% call page.strip() %}
+  {% endcall %}
   {{ page.page_info() }}
   {{ filters.strip() }}
 {% endblock %}
