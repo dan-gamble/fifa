@@ -1,6 +1,13 @@
 module.exports = {
   root: true,
-  extends: 'airbnb-base',
+  extends: 'standard',
+  ecmaFeatures: {
+    modules: true,
+  },
+  env: {
+    browser: true,
+    es6: true
+  },
   // required to lint *.vue files
   plugins: [
     'html'

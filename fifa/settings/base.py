@@ -156,8 +156,12 @@ LOGGING = {
 WSGI_APPLICATION = 'fifa.wsgi.application'
 
 REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'fifa.drf.CustomPagination',
     'PAGE_SIZE': 15,
-    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
 }
 
 WEBPACK_LOADER = {
