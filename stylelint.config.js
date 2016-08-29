@@ -1,22 +1,17 @@
 module.exports = {
-  'plugins': [
-    'stylelint-statement-max-nesting-depth'
-  ],
   'rules': {
-    // Plugins
-    'statement-max-nesting-depth': [3, {
-      countAtRules: false,
-      countedNestedAtRules: false
-    }],
-
     // String
     'string-quotes': 'single',
 
     // Color
     'color-hex-case': 'lower',
     'color-hex-length': 'short',
+    'color-named': 'never',
     'color-no-invalid-hex': true,
-    'color-no-named': true,
+
+    // Font
+    'font-family-name-quotes': 'single-where-required',
+    'font-weight-notation': 'numeric',
 
     // Number
     'number-leading-zero': 'always',
@@ -30,64 +25,33 @@ module.exports = {
     'function-comma-space-before': 'never',
     'function-linear-gradient-no-nonstandard-direction': true,
 
+    // Time
+    'time-no-imperceptible': true,
+
     // Value list
     'value-list-comma-space-after': 'always',
     'value-list-comma-space-before': 'never',
 
     // Unit
-    'unit-blacklist': ['em', 'rem'], // Disallow these because PostCSS adds them
+    'unit-blacklist': ['rem'], // Disallow these because PostCSS adds them
 
     // Declaration
     'declaration-bang-space-after': 'never',
     'declaration-bang-space-before': 'always',
     'declaration-colon-space-after': 'always',
     'declaration-colon-space-before': 'never',
-    'declaration-no-important': true, // Ask DG if this is causing you problems
-
-    // Declaration block
-    'declaration-block-semicolon-newline-after': 'always-multi-line',
-    'declaration-block-semicolon-space-after': 'always-single-line',
-
-    // Block
-    'block-closing-brace-newline-after': 'always',
-    'block-closing-brace-newline-before': 'always-multi-line',
-    'block-closing-brace-space-before': 'always-single-line',
-    'block-no-empty': true,
-    'block-opening-brace-newline-after': 'always-multi-line',
-    'block-opening-brace-space-after': 'always-single-line',
-    'block-opening-brace-space-before': 'always',
-
-    // Selector
-    'selector-combinator-space-after': 'always',
-    'selector-combinator-space-before': 'always',
-    'selector-no-id': true,
-    'selector-no-type': true, // Ask DG if this is causing you problems
-    'selector-no-universal': true,
-    'selector-no-vendor-prefix': true,
-    'selector-pseudo-element-colon-notation': 'double',
-
-    // Selector list
-    'selector-list-comma-space-after': 'always-single-line',
-    'selector-list-comma-space-before': 'never',
-
-    // Rules
-    'rule-nested-empty-line-before': ['always', {
-      except: ['first-nested'],
-      ignore: ['after-comment']
-    }],
-    'rule-no-duplicate-properties': true,
-    'rule-non-nested-empty-line-before': ['always-multi-line', {
-      ignore: ['after-comment']
-    }],
-    'rule-properties-order': [
+    'declaration-no-important': true,
+    'declaration-block-no-duplicate-properties': true,
+    'declaration-block-properties-order': [
       {
-        emptyLineBefore: true,
+        emptyLineBefore: 'always',
         properties: [
-          'content'
+          'content',
+          'font-awesome'
         ]
       },
       {
-        emptyLineBefore: true,
+        emptyLineBefore: 'always',
         properties: [
           'position',
           'top',
@@ -98,7 +62,7 @@ module.exports = {
         ]
       },
       {
-        emptyLineBefore: true,
+        emptyLineBefore: 'always',
         properties: [
           'align-content',
           'align-items',
@@ -115,7 +79,7 @@ module.exports = {
         ]
       },
       {
-        emptyLineBefore: true,
+        emptyLineBefore: 'always',
         properties: [
           'display',
           'max-width',
@@ -124,6 +88,7 @@ module.exports = {
           'min-height',
           'width',
           'height',
+          'clear',
           'float',
           'margin',
           'margin-top',
@@ -139,22 +104,25 @@ module.exports = {
         ]
       },
       {
-        emptyLineBefore: true,
+        emptyLineBefore: 'always',
         properties: [
           'font-family',
           'font-size',
           'font-style',
           'font-weight',
           'letter-spacing',
+          'list-style',
+          'list-style-position',
           'line-height',
           'text-align',
           'text-decoration',
+          'text-indent',
           'text-overflow',
           'text-transform'
         ]
       },
       {
-        emptyLineBefore: true,
+        emptyLineBefore: 'always',
         properties: [
           'appearance',
           'background',
@@ -178,16 +146,18 @@ module.exports = {
           'box-shadow',
           'color',
           'cursor',
+          'fill',
           'mix-blend-mode',
           'opacity',
           'overflow',
           'overflow-x',
           'overflow-y',
-          'visibility'
+          'visibility',
+          'will-change'
         ]
       },
       {
-        emptyLineBefore: true,
+        emptyLineBefore: 'always',
         properties: [
           'animation',
           'animation-delay',
@@ -203,7 +173,32 @@ module.exports = {
         ]
       }
     ],
-    'rule-trailing-semicolon': 'always',
+
+    // Declaration block
+    'declaration-block-semicolon-newline-after': 'always-multi-line',
+    'declaration-block-semicolon-space-after': 'always-single-line',
+
+    // Block
+    'block-closing-brace-newline-before': 'always-multi-line',
+    'block-closing-brace-space-before': 'always-single-line',
+    'block-no-empty': true,
+    'block-opening-brace-newline-after': 'always-multi-line',
+    'block-opening-brace-space-after': 'always-single-line',
+    'block-opening-brace-space-before': 'always',
+
+    // Selector
+    'selector-class-pattern': '^[a-z]([a-z0-9]){1,3}-[A-Z][a-zA-Z0-9]+(_[A-Z][a-zA-Z0-9]+)?(-[a-z]([a-zA-Z0-9-]+)?[a-z0-9]+)?$',
+    'selector-combinator-space-after': 'always',
+    'selector-combinator-space-before': 'always',
+    'selector-no-id': true,
+    'selector-no-type': true,
+    'selector-no-universal': true,
+    'selector-no-vendor-prefix': true,
+    'selector-pseudo-element-colon-notation': 'double',
+
+    // Selector list
+    'selector-list-comma-space-after': 'always-single-line',
+    'selector-list-comma-space-before': 'never',
 
     // Media
     'media-feature-colon-space-after': 'always',
@@ -218,19 +213,22 @@ module.exports = {
     // Media query
     'media-query-parentheses-space-inside': 'never',
 
-    // At rule
-    'at-rule-empty-line-before': ['always', {
-      except: ['blockless-group', 'first-nested'],
-      ignore: ['after-comment']
-    }],
-    'at-rule-no-vendor-prefix': true,
-
     // Comment
     'comment-whitespace-inside': 'always',
 
     // General
     'indentation': 2,
     'no-eol-whitespace': true,
-    'no-missing-eof-newline': true
+    'no-missing-eof-newline': true,
+
+    // Rules
+    'rule-nested-empty-line-before': ['always', {
+      except: ['first-nested'],
+      ignore: ['after-comment']
+    }],
+    'rule-non-nested-empty-line-before': ['always-multi-line', {
+      ignore: ['after-comment']
+    }],
+    'declaration-block-trailing-semicolon': 'always'
   }
 }

@@ -1,8 +1,19 @@
 {
+  "root": true,
   "extends": "standard",
   "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": [
+    "html"
+  ],
   "ecmaFeatures": {
-    "modules": true,
+    "modules": true
+  },
+  "env": {
+    "browser": true,
+    "es6": true
   },
   "rules": {
     "arrow-parens": [2, "always"],

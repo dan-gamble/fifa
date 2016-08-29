@@ -43,8 +43,8 @@
     computed: {
       overallChemistry () {
         return Object.values(this.player.chemistry).reduce((prev, next) => {
-              return prev + next
-            }) || 0
+          return prev + next
+        }) || 0
       }
     },
 

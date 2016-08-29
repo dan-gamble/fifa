@@ -1,5 +1,8 @@
+jinja2>=2.8.0
+django-webpack-loader>=0.3.3
+django-filter>=0.14.0
+djangorestframework>=3.4.6
 Markdown>=2.4.1
-django-model_name-utils>=2.2
 bcrypt>=1.0.2
 psycopg2>=2.5.3
 Pillow>=2.8.1

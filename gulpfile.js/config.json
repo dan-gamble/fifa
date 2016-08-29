@@ -17,23 +17,30 @@
     "js": {
       "src": "js",
       "dest": "js",
-      "extractSharedJs": true,
       "entries": {
         "app": ["./main.js"]
       },
-      "extensions": ["js"]
+      "extensions": ["js"],
+      "babel": {
+        "presets": ["es2015", "stage-0"],
+        "plugins": ["transform-runtime", "lodash"]
+      },
+      "extractSharedJs": true
     },
-
     "css": {
       "src": "css",
       "dest": "css",
       "extensions": ["css"]
     },
 
-    "stylelint": {
-      "src": "css",
-      "dest": "css",
-      "extensions": ["css"]
+    "html": {
+      "src": "html",
+      "dest": "html",
+      "htmlmin": {
+        "collapseWhitespace": true
+      },
+      "extensions": ["html", "json"],
+      "excludeFolders": ["layouts", "shared", "macros", "data"]
     },
 
     "images": {
