@@ -3,27 +3,6 @@
 {% import 'players/macros/filters.html' as filters %}
 {% import 'players/macros/players.html' as players %}
 
-{% block content_above %}
-  {% set urls = [
-    {
-      'title': 'Home',
-      'url': '/',
-      'active': False
-    },
-    {
-      'title': 'Players',
-      'url': url('players:players'),
-      'active': True
-    }
-  ] %}
-
-  {{ page.breadcrumb(urls) }}
-  {% call page.strip() %}
-  {% endcall %}
-  {{ page.page_info() }}
-  {{ filters.strip() }}
-{% endblock %}
-
 {% block main %}
   <style>
     .player {

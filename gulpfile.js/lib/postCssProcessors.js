@@ -19,7 +19,7 @@ module.exports = [
   require('postcss-assets')({
     basePath: 'fifa/assets/',
     loadPaths: ['img/'],
-    baseUrl: '/static/'
+    baseUrl: '/static/build/'
   }),
   require('postcss-inline-svg')({
     path: 'fifa/assets/img/'

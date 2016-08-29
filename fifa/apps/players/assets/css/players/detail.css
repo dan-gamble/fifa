@@ -1,0 +1,254 @@
+/*
+|--------------------------------------------------------------------------
+| Detail
+|--------------------------------------------------------------------------
+| @namespace: plyr-
+|
+*/
+.plyr-Detail_Columns {
+  @include Grid_Row();
+}
+
+.plyr-Detail_Column {
+  @include Grid_Column(1, 2);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Card
+|--------------------------------------------------------------------------
+|
+*/
+.plyr-Detail_CardSurround {
+  align-items: center;
+  justify-content: center;
+
+  display: flex;
+  padding: 50px;
+
+  background-color: #f9fafb;
+  border: 1px solid var(--Color_Border);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Strap line
+|--------------------------------------------------------------------------
+|
+*/
+.plyr-Detail_Strapline {
+  justify-content: space-between;
+
+  display: flex;
+}
+
+.plyr-Detail_TextContent {
+  color: #2c3e50;
+}
+
+.plyr-Detail_Title {
+  @include Font(36);
+
+  margin-bottom: 10px;
+
+  line-height: 1;
+}
+
+.plyr-Detail_UnderTitle {
+  @include Font(14);
+
+  font-weight: 700;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Share
+|--------------------------------------------------------------------------
+|
+*/
+.plyr-Detail_Share {
+  display: flex;
+}
+
+.plyr-Detail_ShareItem {
+  align-items: center;
+  justify-content: center;
+
+  display: inline-flex;
+  width: 38px;
+  height: @width;
+  margin-right: 10px;
+
+  font-size: 0;
+
+  border-radius: 4px;
+  color: #fff;
+
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #fff;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &::after {
+    font-size: 20px;
+
+    transition: color 0.3s;
+  }
+}
+
+.plyr-Detail_ShareItem-facebook {
+  background-color: facebook-color;
+
+  &:hover {
+    &::after {
+      color: facebook-color;
+    }
+  }
+
+  &::after {
+    font-awesome: facebook;
+  }
+}
+
+.plyr-Detail_ShareItem-twitter {
+  background-color: twitter-color;
+
+  &:hover {
+    &::after {
+      color: twitter-color;
+    }
+  }
+
+  &::after {
+    font-awesome: twitter;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Prices
+|--------------------------------------------------------------------------
+|
+*/
+.plyr-Detail_Prices {
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  display: flex;
+  margin-top: 30px;
+}
+
+.plyr-Detail_Price {
+  align-items: flex-start;
+  justify-content: space-between;
+
+  display: flex;
+  margin-top: 20px;
+
+  &:nth-child(-n+2) {
+    margin-top: 0;
+  }
+}
+
+.plyr-Detail_PriceImage {
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  width: 50px;
+}
+
+.plyr-Detail_PriceAverage {
+  display: flex;
+  margin-right: var(--Grid_Gutter);
+  margin-left: @margin-right;
+}
+
+.plyr-Detail_PriceAverageCoins {
+  display: inline-block;
+  width: 10px;
+  height: 30px;
+  margin-right: 8px;
+
+  background-image: url('http://futhead.cursecdn.com/static/img/coin.png?7d6bfc9c1301');
+  background-position: center;
+}
+
+.plyr-Detail_PriceAverageValueText {
+  @include Font(24);
+
+  display: block;
+}
+
+.plyr-Detail_PriceAverageLastUpdate {
+  @include Font(10);
+
+  display: block;
+
+  &::before {
+    font-awesome: clock-o;
+
+    margin-right: 5px;
+  }
+}
+
+.plyr-Detail_PriceRange {
+  @include Font(14);
+
+  font-weight: 700;
+}
+
+.plyr-Detail_PriceRangeTop {
+  padding-left: 14px;
+
+  background-image: url('http://futhead.cursecdn.com/static/img/coin.png?7d6bfc9c1301');
+  background-position: left center;
+}
+
+.plyr-Detail_PriceRangeLow {
+  margin-top: 5px;
+  padding-top: @margin-top;
+  padding-left: 14px;
+
+  background-image: url('http://futhead.cursecdn.com/static/img/coin.png?7d6bfc9c1301');
+  background-position: left center;
+  border-top: 1px solid var(--Color_Border);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Info
+|--------------------------------------------------------------------------
+|
+*/
+.plyr-Detail_InfoItems {
+  @include Grid_Row();
+
+  flex-wrap: wrap;
+}
+
+.plyr-Detail_InfoItem {
+  @include Grid_Column(1, 2);
+
+  display: flex;
+  margin-top: 10px;
+
+  &:nth-child(-n+2) {
+    margin-top: 0;
+  }
+}
+
+.plyr-Detail_InfoLabel {
+  flex-shrink: 0;
+
+  width: 80px;
+  margin-right: 15px;
+}
+
+.plyr-Detail_InfoValue {
+  font-weight: 700;
+}

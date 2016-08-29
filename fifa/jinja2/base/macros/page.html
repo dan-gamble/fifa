@@ -1,26 +1,24 @@
-{% macro breadcrumb(urls) %}
-  <div class="pg-Breadcrumb">
-    <div class="pg-Breadcrumb_Inner">
-      <div class="pg-Breadcrumb_Items">
-        {% for url in urls %}
-          <div class="pg-Breadcrumb_Item{{ ' pg-Breadcrumb_Item-current' if url.active else '' }}">
-            {% if not url.active %}
-              <a class="pg-Breadcrumb_Action" href="{{ url.url }}">{{ url.title }}</a>
-            {% else %}
-              {{ url.title }}
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-{% endmacro %}
-
-{% macro strip() %}
+{% macro strip(title, urls) %}
   <div class="pg-Strip">
     <div class="pg-Strip_Inner">
-      <div class="pg-Strip_Content">
-        {{ caller() }}
+      <div class="pg-Strip_Body">
+        <p class="pg-Strip_Title">{{ title }}</p>
+
+        <div class="pg-Strip_Breadcrumbs">
+          <div class="pg-Breadcrumb">
+            <div class="pg-Breadcrumb_Items">
+              {% for url in urls %}
+                <div class="pg-Breadcrumb_Item{{ ' pg-Breadcrumb_Item-current' if url.active else '' }}">
+                  {% if not url.active %}
+                    <a class="pg-Breadcrumb_Action" href="{{ url.url }}">{{ url.title }}</a>
+                  {% else %}
+                    {{ url.title }}
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

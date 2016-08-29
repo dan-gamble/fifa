@@ -1,124 +1,136 @@
-{% extends 'base.html' %}
+{% extends 'extends/detail.html' %}
 {% import 'base/macros/page.html' as page %}
 {% import 'players/macros/players.html' as playerMacros %}
 {% import 'players/macros/cards.html' as card %}
 
 {% block content_above %}
-  {{ page.breadcrumb(breadcrumb_urls()) }}
-
-  {% call page.strip() %}
-    <h1 class="pg-Strip_Title">{{ object.detail_title() }}</h1>
-    <p class="pg-Strip_Text">Vivamus id malesuada velit. Mauris gravida at neque nec interdum. Vestibulum ultricies nisl at quam cursus consectetur. In et nibh at sem porttitor malesuada nec in lorem. Nulla auctor, lorem in imperdiet lacinia, mauris libero tincidunt erat, eget tincidunt elit sapien eget massa.</p>
-  {% endcall %}
+  {{ page.strip('{} - {}'.format(player.common_name, player.overall_rating), breadcrumb_urls()) }}
 {% endblock %}
 
 {% block content_class %}lyt-Content-single{% endblock %}
 
 {% block content %}
-  <div class="plyr-Strip">
-    <div class="plyr-Strip_Inner">
-      <div class="plyr-Card_Surround">
-        {{ card.card(player) }}
+  <div class="plyr-Detail_Section">
+    <div class="plyr-Detail_Columns">
+      <div class="plyr-Detail_Column">
+        <div class="plyr-Detail_CardSurround">
+          {{ card.card(player) }}
+        </div>
       </div>
 
-      <div class="plyr-Strip_Content">
-        <div class="plyr-Strip_ContentTop">
-          <div class="plyr-Strip_Rating">{{ object.overall_rating }}</div>
-          <h2 class="plyr-Strip_Name">{{ object.common_name }}</h2>
+      <div class="plyr-Detail_Column">
+        <div class="plyr-Detail_Strapline">
+          <div class="plyr-Detail_TextContent">
+            <h1 class="plyr-Detail_Title">{{ player.common_name }}</h1>
+            <p class="plyr-Detail_UnderTitle">
+              Plays for
+              <a class="plyr-Strip_ContentItemValue" href="{{ url('clubs:club', kwargs={'slug': object.club.slug}) }}">{{ object.club }}</a>
+              and
+              <a class="plyr-Strip_ContentItemValue" href="{{ url('nations:nation', kwargs={'slug': object.nation.slug}) }}">{{ object.nation }}</a>
+            </p>
+          </div>
+
+          <div class="plyr-Detail_Share">
+            <a href="#" class="plyr-Detail_ShareItem plyr-Detail_ShareItem-facebook">Facebook</a>
+            <a href="#" class="plyr-Detail_ShareItem plyr-Detail_ShareItem-twitter">Twitter</a>
+          </div>
         </div>
 
-        <div class="plyr-Strip_ContentBottom">
-          <div class="plyr-Strip_ContentItems">
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Skill Moves</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.skill_moves }}</div>
+        <div class="plyr-Detail_Prices">
+          <div class="plyr-Detail_Price plyr-Detail_Price-playstation">
+            <img class="plyr-Detail_PriceImage" src="http://futhead.cursecdn.com/static/img/icons/ps_100x100.png">
+
+            <div class="plyr-Detail_PriceAverage">
+              <div class="plyr-Detail_PriceAverageCoins"></div>
+              <div class="plyr-Detail_PriceAverageValue">
+                <span class="plyr-Detail_PriceAverageValueText">65,500</span>
+                <span class="plyr-Detail_PriceAverageLastUpdate">11 hours ago</span>
+              </div>
             </div>
 
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Weak Foot</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.weak_foot }}</div>
-            </div>
-
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Club</div>
-              <a class="plyr-Strip_ContentItemValue" href="{{ url('clubs:club', kwargs={'slug': object.club.slug}) }}">{{ object.club }}</a>
-            </div>
-
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">League</div>
-              <a class="plyr-Strip_ContentItemValue" href="{{ url('leagues:league', kwargs={'slug': object.league.slug}) }}">{{ object.league }}</a>
-            </div>
-
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Nation</div>
-              <a class="plyr-Strip_ContentItemValue" href="{{ url('nations:nation', kwargs={'slug': object.nation.slug}) }}">{{ object.nation }}</a>
-            </div>
-
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Age</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.age }} ({{ object.date_of_birth }})</div>
-            </div>
-
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Height</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.height }}</div>
-            </div>
-
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Workrates</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.workrate_att }} | {{ object.workrate_def }}</div>
-            </div>
-
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Position</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.position }}</div>
+            <div class="plyr-Detail_PriceRange">
+              <div class="plyr-Detail_PriceRangeTop">10,000</div>
+              <div class="plyr-Detail_PriceRangeLow">650</div>
             </div>
           </div>
 
-          <div class="plyr-Strip_ContentItems">
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Skill Moves</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.skill_moves }}</div>
+          <div class="plyr-Detail_Price plyr-Detail_Price-xbox">
+            <img class="plyr-Detail_PriceImage" src="http://futhead.cursecdn.com/static/img/icons/xb_100x100.png">
+
+            <div class="plyr-Detail_PriceAverage">
+              <div class="plyr-Detail_PriceAverageCoins"></div>
+              <div class="plyr-Detail_PriceAverageValue">
+                <span class="plyr-Detail_PriceAverageValueText">65,500</span>
+                <span class="plyr-Detail_PriceAverageLastUpdate">11 hours ago</span>
+              </div>
             </div>
 
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Weak Foot</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.weak_foot }}</div>
+            <div class="plyr-Detail_PriceRange">
+              <div class="plyr-Detail_PriceRangeTop">10,000</div>
+              <div class="plyr-Detail_PriceRangeLow">650</div>
+            </div>
+          </div>
+
+          <div class="plyr-Detail_Price plyr-Detail_Price-pc">
+            <img class="plyr-Detail_PriceImage" src="http://futhead.cursecdn.com/static/img/icons/pc_100x100.png">
+
+            <div class="plyr-Detail_PriceAverage">
+              <div class="plyr-Detail_PriceAverageCoins"></div>
+              <div class="plyr-Detail_PriceAverageValue">
+                <span class="plyr-Detail_PriceAverageValueText">65,500</span>
+                <span class="plyr-Detail_PriceAverageLastUpdate">11 hours ago</span>
+              </div>
             </div>
 
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Club</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.club }}</div>
+            <div class="plyr-Detail_PriceRange">
+              <div class="plyr-Detail_PriceRangeTop">10,000</div>
+              <div class="plyr-Detail_PriceRangeLow">650</div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="plyr-Detail_Info">
+          <div class="plyr-Detail_InfoItems">
+            <div class="plyr-Detail_InfoItem">
+              <div class="plyr-Detail_InfoLabel">Skill Moves</div>
+              <div class="plyr-Detail_InfoValue">{{ object.skill_moves }}</div>
             </div>
 
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">League</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.league }}</div>
+            <div class="plyr-Detail_InfoItem">
+              <div class="plyr-Detail_InfoLabel">Weak Foot</div>
+              <div class="plyr-Detail_InfoValue">{{ object.weak_foot }}</div>
             </div>
 
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Nation</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.nation }}</div>
+            <div class="plyr-Detail_InfoItem">
+              <div class="plyr-Detail_InfoLabel">Club</div>
+              <a class="plyr-Detail_InfoValue" href="{{ url('clubs:club', kwargs={'slug': object.club.slug}) }}">{{ object.club }}</a>
             </div>
 
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Age</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.age }} ({{ object.date_of_birth }})</div>
+            <div class="plyr-Detail_InfoItem">
+              <div class="plyr-Detail_InfoLabel">League</div>
+              <a class="plyr-Detail_InfoValue" href="{{ url('leagues:league', kwargs={'slug': object.league.slug}) }}">{{ object.league }}</a>
             </div>
 
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Height</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.height }}</div>
+            <div class="plyr-Detail_InfoItem">
+              <div class="plyr-Detail_InfoLabel">Nation</div>
+              <a class="plyr-Detail_InfoValue" href="{{ url('nations:nation', kwargs={'slug': object.nation.slug}) }}">{{ object.nation }}</a>
             </div>
 
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Workrates</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.workrate_att }} | {{ object.workrate_def }}</div>
+            <div class="plyr-Detail_InfoItem">
+              <div class="plyr-Detail_InfoLabel">Age</div>
+              <div class="plyr-Detail_InfoValue">{{ object.age() }} ({{ object.date_of_birth }})</div>
             </div>
 
-            <div class="plyr-Strip_ContentItem">
-              <div class="plyr-Strip_ContentItemLabel">Position</div>
-              <div class="plyr-Strip_ContentItemValue">{{ object.position }}</div>
+            <div class="plyr-Detail_InfoItem">
+              <div class="plyr-Detail_InfoLabel">Height</div>
+              <div class="plyr-Detail_InfoValue">{{ object.height }}</div>
+            </div>
+
+            <div class="plyr-Detail_InfoItem">
+              <div class="plyr-Detail_InfoLabel">Workrates</div>
+              <div class="plyr-Detail_InfoValue">{{ object.workrate_att }} | {{ object.workrate_def }}</div>
             </div>
           </div>
         </div>

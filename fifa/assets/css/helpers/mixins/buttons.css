@@ -19,22 +19,37 @@
 */
 @mixin Button() {
   display: inline-block;
-  padding: 7px 20px;
-
-  line-height: 26px;
+  padding: 7px var(--Grid_Gutter);
 
   background-color: transparent;
-  border-radius: 3px;
+  border: 1px solid transparent;
   color: #fff;
 
-  transition: background-color 0.18s, color 0.18s;
+  /* stylelint-disable */
+  transition: background-color var(--Global_Transition),
+              border var(--Global_Transition),
+              color var(--Global_Transition);
+  /* stylelint-enable */
+}
 
-  @media (--md) {
-    line-height: 26px;
-  }
+/*
+|--------------------------------------------------------------------------
+| Button - Primary
+|--------------------------------------------------------------------------
+| The style for the primary button used
+|
+*/
+@mixin Button-primary() {
+  @include Button();
+}
 
-  &:hover {
-    background-color: transparent;
-    color: #fff;
-  }
+/*
+|--------------------------------------------------------------------------
+| Button - Secondary
+|--------------------------------------------------------------------------
+| The style for the secondary button used
+|
+*/
+@mixin Button-secondary() {
+  @include Button();
 }

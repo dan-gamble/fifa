@@ -116,9 +116,6 @@
       "stage-0"
     ]
   },
-  "pre-commit": [
-    "lint-staged"
-  ],
   "lint-staged": {
     "*.css": [
       "lint:css",

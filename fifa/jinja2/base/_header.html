@@ -1,52 +1,35 @@
 <div class="hd-Header">
   <div class="hd-Header_Inner">
-    <div class="hd-Header_TopStrip">
-      <div class="hd-Header_TopStripInner">
-        <div class="hd-Search">
-          <global-search></global-search>
-        </div>
+    <a class="hd-Logo" href="/">Futily</a>
 
-        <div class="hd-Header_Social">
-          <a class="hd-Header_SocialItem hd-Header_SocialItem-facebook" href="#"></a>
-          <a class="hd-Header_SocialItem hd-Header_SocialItem-twitter" href="#"></a>
-          <a class="hd-Header_SocialItem hd-Header_SocialItem-google" href="#"></a>
-          <a class="hd-Header_SocialItem hd-Header_SocialItem-youtube" href="#"></a>
-        </div>
+    <nav class="hd-Nav">
+      <div class="hd-Nav_Item">
+        <a class="hd-Nav_Link" href="/">Home</a>
       </div>
-    </div>
 
-    <div class="hd-Header_BottomStrip">
-      <div class="hd-Header_BottomStripInner">
-        <a class="hd-Logo" href="/">FUT<span class="hd-Logo_Mark">moz</span></a>
-
-        <nav class="hd-Nav">
-          <div class="hd-Nav_Item">
-            <a class="hd-Nav_Link" href="/">Home</a>
-          </div>
-
-          <div class="hd-Nav_Item">
-            <a class="hd-Nav_Link" href="{{ url('builder:builder') }}">Builder</a>
-          </div>
-
-          <div class="hd-Nav_Item">
-            <a class="hd-Nav_Link" href="{{ url('players:players') }}">Players</a>
-          </div>
-
-          <div class="hd-Nav_Item">
-            <a class="hd-Nav_Link" href="{{ url('clubs:clubs') }}">Clubs</a>
-          </div>
-
-          <div class="hd-Nav_Item">
-            <a class="hd-Nav_Link" href="{{ url('leagues:leagues') }}">League</a>
-          </div>
-
-          <div class="hd-Nav_Item">
-            <a class="hd-Nav_Link" href="{{ url('nations:nations') }}">Nations</a>
-          </div>
-        </nav>
-
-        <a class="hd-Action" href="#">User panel</a>
+      <div class="hd-Nav_Item">
+        <a class="hd-Nav_Link" href="{{ url('builder:builder') }}">Builder</a>
       </div>
+
+      <div class="hd-Nav_Item">
+        <a class="hd-Nav_Link" href="{{ url('players:players') }}">Players</a>
+      </div>
+
+      <div class="hd-Nav_Item">
+        <a class="hd-Nav_Link" href="{{ url('clubs:clubs') }}">Clubs</a>
+      </div>
+
+      <div class="hd-Nav_Item">
+        <a class="hd-Nav_Link" href="{{ url('leagues:leagues') }}">League</a>
+      </div>
+
+      <div class="hd-Nav_Item">
+        <a class="hd-Nav_Link" href="{{ url('nations:nations') }}">Nations</a>
+      </div>
+    </nav>
+
+    <div class="hd-Search">
+      <span class="hd-Search_Icon"></span>
     </div>
   </div>
 </div>

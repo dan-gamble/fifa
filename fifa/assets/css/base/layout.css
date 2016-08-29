@@ -18,7 +18,8 @@
   @include Grid_Container();
 
   display: flex;
-  padding-top: 70px;
+  padding-top: 100px;
+  padding-bottom: @padding-top;
 
   &.lyt-Content-single {
     display: block;

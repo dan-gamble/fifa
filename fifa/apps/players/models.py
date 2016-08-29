@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib.postgres.fields import JSONField
 from django.core import urlresolvers
 from django.db import models
@@ -79,7 +80,6 @@ class Player(EaAsset, TimeStampedModel, models.Model):
     weight = models.PositiveIntegerField(blank=True, null=True)
 
     date_of_birth = models.DateField(blank=True, null=True)
-    age = models.PositiveIntegerField(blank=True, null=True)
 
     acceleration = models.PositiveIntegerField(blank=True, null=True)
     aggression = models.PositiveIntegerField(blank=True, null=True)
@@ -172,6 +172,12 @@ class Player(EaAsset, TimeStampedModel, models.Model):
             self.save()
 
         return url
+
+    def age(self):
+        today = date.today()
+        born = self.date_of_birth
+
+        return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
     def detail_title(self):
         split = '{} {}'.format(self.first_name, self.last_name).split(' ')

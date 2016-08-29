@@ -4,5 +4,6 @@ django-filter>=0.14.0
 djangorestframework>=3.4.6
 Markdown>=2.4.1
 bcrypt>=1.0.2
+requests>=2.11.1
 psycopg2>=2.5.3
 Pillow>=2.8.1

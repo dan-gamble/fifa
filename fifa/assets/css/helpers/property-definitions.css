@@ -1,9 +1,14 @@
 :root {
-  --Color_Dark: #2b2d42;
-  --Color_Grey: #858585;
+  --Color_Green: #1abc9c;
+  --Color_Dark: #2c3e50;
+  --Color_Grey: #a1b1bc;
   --Color_Yellow: #ffc722;
   --Color_Yellow-dark: #f2bd20;
   --Color_Red: #ef233c;
+
+  --Color_Brand: var(--Color_Green);
+  --Color_Body: var(--Color_Grey);
+  --Color_Border: #ecf0f1;
 
   --Color_Poor: #bf3030;
   --Color_Fair: #d47c00;
@@ -11,31 +16,28 @@
   --Color_Good: #90c039;
   --Color_Great: #54a71b;
 
-  --Font_Family-montserrat: 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
-  --Font_Family-raleway: 'Raleway', 'Helvetica Neue', 'Helvetica', sans-serif;
-  --Font_Family-roboto: 'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif;
-  --Font_Family-robotoSlab: 'Roboto Slab', 'Helvetica Neue', 'Helvetica', sans-serif;
-  --Font_Family-body: var(--Font_Family-raleway);
+  --Font_Family-lato: 'Lato', 'Helvetica Neue', 'Helvetica', sans-serif;
+  --Font_Family-body: var(--Font_Family-lato);
 
   /**
   * Font sizing
   */
   --VerticalRhythmBaseline: 12px;
 
+  --Font_Size-10: 10px;
+  --Line_Height-10: calc(var(--VerticalRhythmBaseline) * 1);
+
+  --Font_Size-14: 14px;
+  --Line_Height-14: calc(var(--VerticalRhythmBaseline) * 1.5);
+
   --Font_Size-16: 16px;
   --Line_Height-16: calc(var(--VerticalRhythmBaseline) * 2);
 
-  --Font_Size-18: 18px;
-  --Line_Height-18: calc(var(--VerticalRhythmBaseline) * 2);
-
-  --Font_Size-20: 20px;
-  --Line_Height-20: calc(var(--VerticalRhythmBaseline) * 2);
-
   --Font_Size-24: 24px;
-  --Line_Height-24: calc(var(--VerticalRhythmBaseline) * 3);
+  --Line_Height-24: calc(var(--VerticalRhythmBaseline) * 2.5);
 
-  --Font_Size-32: 32px;
-  --Line_Height-32: calc(var(--VerticalRhythmBaseline) * 3);
+  --Font_Size-36: 36px;
+  --Line_Height-36: calc(var(--VerticalRhythmBaseline) * 3.5);
 
   --Grid_Gutter: 20px;
   --Grid_Container: 1170px;

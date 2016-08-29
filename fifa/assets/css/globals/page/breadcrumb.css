@@ -1,0 +1,37 @@
+/*
+|--------------------------------------------------------------------------
+| Breadcrumb
+|--------------------------------------------------------------------------
+| @namespace: pg-
+|
+*/
+.pg-Breadcrumb_Items {
+  display: flex;
+}
+
+.pg-Breadcrumb_Item {
+  position: relative;
+
+  font-size: 14px;
+  line-height: 20px;
+
+  color: var(--Color_Grey);
+
+  &:last-child {
+    &::after {
+      display: none;
+    }
+  }
+
+  &::after {
+    font-awesome: angle-right;
+
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: @margin-right;
+  }
+}
+
+.pg-Breadcrumb_Action {
+  color: inherit;
+}
